@@ -10,6 +10,7 @@
             <e p="BlockView.cs" t="Include" />
             <e p="CracksBlock.cs" t="Include" />
           </e>
+          <e p="ClampAngleHelper.cs" t="Include" />
           <e p="Controllers" t="Include">
             <e p="BlocksController.cs" t="Include" />
             <e p="CameraController.cs" t="Include" />

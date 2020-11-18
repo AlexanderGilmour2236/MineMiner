@@ -11,6 +11,7 @@ namespace Game.Block
     {
         [SerializeField] private BlockData blockData = null;
         [SerializeField] private MeshRenderer meshRenderer;
+        [SerializeField] private ParticleSystem destroyParticles;
         
         private bool _isPointerDown;
         private float _strengthLeft;
@@ -49,7 +50,6 @@ namespace Game.Block
                 return;
             }
             _strengthLeft -= damage;
-            Debug.Log(_strengthLeft);
             
             if (_strengthLeft <= 0)
             {

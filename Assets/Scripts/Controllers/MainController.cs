@@ -13,15 +13,19 @@ namespace Game.Controllers
         [Header("Level")] 
         [SerializeField] private Transform levelParent;
 
-        [Header("Tags")] 
-        [SerializeField] private string blocksTag = "Block";
+        [Header("Input")]
+        [SerializeField] private float mouseSensitivity;
 
         private bool _pointerDown;
+        private Vector3 _mouseDownPosition = Vector3.zero;
+        private Vector2 _mouseDragPosition = Vector2.zero;
 
+        // Starting point of the game
         private void Start()
         {
             blocksController.BlockDestroy += OnBlockDestroy;
             blocksController.SetAllBlocks(levelParent);
+            cameraController.SetTargetPoint(blocksController.LevelCenterTransform);
         }
 
         private void OnBlockDestroy(BlockView block)
@@ -31,9 +35,15 @@ namespace Game.Controllers
 
         private void Update()
         {
+            InputControls();
+        }
+
+        private void InputControls()
+        {
             if (Input.GetMouseButtonDown(0))
             {
                 _pointerDown = true;
+                _mouseDownPosition = Input.mousePosition;
             }
 
             if (Input.GetMouseButtonUp(0))
@@ -44,8 +54,22 @@ namespace Game.Controllers
             if (_pointerDown)
             {
                 Ray ray = cameraController.Camera.ScreenPointToRay(Input.mousePosition);
-                blocksController.TryHitBlock(ray);
+                if (!blocksController.TryHitBlock(ray))
+                {
+                    _mouseDragPosition = Input.mousePosition;
+                }
+                else
+                {
+                    _mouseDragPosition = _mouseDownPosition;
+                }
             }
+
+            float xRotation = (_mouseDragPosition.y - _mouseDownPosition.y) * mouseSensitivity;
+            float yRotation = (_mouseDragPosition.x - _mouseDownPosition.x) * mouseSensitivity;
+
+            cameraController.Rotate(new Vector3(-xRotation, yRotation));
+
+            _mouseDownPosition = Vector3.Lerp(_mouseDownPosition, _mouseDragPosition, 0.05f);
         }
     }
 }

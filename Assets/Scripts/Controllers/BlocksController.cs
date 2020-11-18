@@ -8,9 +8,11 @@ namespace Game.Controllers
     public class BlocksController : MonoBehaviour
     {
         [SerializeField] private CracksBlock cracksBlock;
-
+        [SerializeField] private Renderer renderer;
+        [SerializeField] private Transform levelCenterTransform;
+        
         public static string BlockTag = "Block";
-
+        
         public event Action<BlockView> BlockDestroy;
 
         private BlockView _currentBlockView;
@@ -26,11 +28,30 @@ namespace Game.Controllers
             {
                 block.BlockDestroy += OnBlockDestroy;
             }
+            
+            levelCenterTransform.position = FindCenterPoint(_currentBlocks);
         }
 
         private void OnBlockDestroy(BlockView block)
         {
             BlockDestroy?.Invoke(block);
+            _currentBlocks.Remove(block);
+            levelCenterTransform.position = FindCenterPoint(_currentBlocks);
+        }
+
+        Vector3 FindCenterPoint(List<BlockView> blocks)
+        {
+            Vector3 blockCenter  = Vector3.zero;
+            float count = 0;
+
+            foreach (BlockView block in blocks){
+                blockCenter += block.transform.position;
+                count++;
+            }
+            
+            Vector3 centerPoint = blockCenter / count;
+
+            return centerPoint;
         }
 
         private void LateUpdate()
@@ -58,7 +79,7 @@ namespace Game.Controllers
             _undoRaycastHit = false;
         }
 
-        public void TryHitBlock(Ray ray)
+        public bool TryHitBlock(Ray ray)
         {
             _isRaycastingInCurrentFrame = true;
             RaycastHit hit;
@@ -82,6 +103,7 @@ namespace Game.Controllers
                     cracksBlock.transform.position = _currentBlockView.transform.position;
                     cracksBlock.SetNormalizedValue(_currentBlockView.GetNormalizedValue());
                     cracksBlock.gameObject.SetActive(true);
+                    return true;
                 }
             }
             else
@@ -91,6 +113,13 @@ namespace Game.Controllers
                     _undoRaycastHit = true;
                 }
             }
+
+            return false;
+        }
+        
+        public Transform LevelCenterTransform
+        {
+            get { return levelCenterTransform; }
         }
     }
 }
