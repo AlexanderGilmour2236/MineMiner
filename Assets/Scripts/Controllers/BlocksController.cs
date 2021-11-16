@@ -1,26 +1,33 @@
 using System;
 using System.Collections.Generic;
 using Game.Block;
+using Misc;
 using UnityEngine;
 
 namespace Game.Controllers
 {
     public class BlocksController : MonoBehaviour
     {
-        [SerializeField] private CracksBlock cracksBlock;
-        [SerializeField] private Renderer renderer;
+        [SerializeField] private CracksBlock cracksBlockPrefab;
         [SerializeField] private Transform levelCenterTransform;
         
         public static string BlockTag = "Block";
-        
+
         public event Action<BlockView> BlockDestroy;
 
-        private BlockView _currentBlockView;
+        private BlockView _hittingBlockView;
         private bool _undoRaycastHit;
         private bool _isRaycastingInCurrentFrame;
+        private MonoPool<CracksBlock> _cracksBlocksPool;
+        private Dictionary<BlockView, CracksBlock> _blockToCracks = new Dictionary<BlockView, CracksBlock>();
 
         private List<BlockView> _currentBlocks = new List<BlockView>();
-
+        private Vector3 _centerPoint;
+        public void Init()
+        {
+            _cracksBlocksPool = new MonoPool<CracksBlock>(transform, cracksBlockPrefab);
+        }
+        
         public void SetAllBlocks(Transform parent)
         {
             parent.GetComponentsInChildren(parent, _currentBlocks);
@@ -29,14 +36,18 @@ namespace Game.Controllers
                 block.BlockDestroy += OnBlockDestroy;
             }
             
-            levelCenterTransform.position = FindCenterPoint(_currentBlocks);
+            _centerPoint = FindCenterPoint(_currentBlocks);
+            levelCenterTransform.position = _centerPoint;
         }
 
         private void OnBlockDestroy(BlockView block)
         {
+            _undoRaycastHit = true;
             BlockDestroy?.Invoke(block);
             _currentBlocks.Remove(block);
-            levelCenterTransform.position = FindCenterPoint(_currentBlocks);
+            _centerPoint = FindCenterPoint(_currentBlocks);
+            _cracksBlocksPool.ReleaseObject(_blockToCracks[block]);
+            _blockToCracks.Remove(block);
         }
 
         Vector3 FindCenterPoint(List<BlockView> blocks)
@@ -54,11 +65,16 @@ namespace Game.Controllers
             return centerPoint;
         }
 
+        private void Update()
+        {
+            levelCenterTransform.position = Vector3.Lerp(levelCenterTransform.position, _centerPoint, 0.1f);
+        }
+
         private void LateUpdate()
         {
             if (!_isRaycastingInCurrentFrame)
             {
-                if (_currentBlockView != null)
+                if (_hittingBlockView != null)
                 {
                     _undoRaycastHit = true;
                 }
@@ -66,15 +82,9 @@ namespace Game.Controllers
 
             if (_undoRaycastHit)
             {
-                _currentBlockView.UndoHit();
-                _currentBlockView = null;
+                _hittingBlockView = null;
             }
             
-            if (_currentBlockView == null)
-            {
-                cracksBlock.gameObject.SetActive(false);
-            }
-
             _isRaycastingInCurrentFrame = false;
             _undoRaycastHit = false;
         }
@@ -90,25 +100,32 @@ namespace Game.Controllers
                 {
                     var newBlockView = objectHit.GetComponent<BlockView>();
                         
-                    if (_currentBlockView != null)
+                    _hittingBlockView = newBlockView;
+                    if (_hittingBlockView.Hit(Time.deltaTime))
                     {
-                        if (newBlockView != _currentBlockView)
-                        {
-                            _currentBlockView.UndoHit();
-                        }
+                        return false;
                     }
 
-                    _currentBlockView = newBlockView;
-                    _currentBlockView.Hit(Time.deltaTime);
-                    cracksBlock.transform.position = _currentBlockView.transform.position;
-                    cracksBlock.SetNormalizedValue(_currentBlockView.GetNormalizedValue());
-                    cracksBlock.gameObject.SetActive(true);
+                    CracksBlock cracksBlock;
+                    if (!_blockToCracks.ContainsKey(_hittingBlockView))
+                    {
+                        cracksBlock = _cracksBlocksPool.GetObject();
+                        cracksBlock.transform.position = _hittingBlockView.transform.position;
+                    }
+                    else
+                    {
+                        cracksBlock = _blockToCracks[_hittingBlockView];
+                    }
+                    
+                    cracksBlock.SetNormalizedValue(_hittingBlockView.GetNormalizedValue());
+
+                    _blockToCracks[_hittingBlockView] = cracksBlock;
                     return true;
                 }
             }
             else
             {
-                if (_currentBlockView != null)
+                if (_hittingBlockView != null)
                 {
                     _undoRaycastHit = true;
                 }

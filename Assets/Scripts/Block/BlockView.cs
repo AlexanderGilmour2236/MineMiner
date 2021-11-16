@@ -42,12 +42,12 @@ namespace Game.Block
             meshRenderer.material = blockData.Material;
         }
 
-        public void Hit(float damage)
+        public bool Hit(float damage)
         {
             if (blockData == null)
             {
                 DestroyBlock();
-                return;
+                return true;
             }
             _strengthLeft -= damage;
             
@@ -55,12 +55,15 @@ namespace Game.Block
             {
                 BlockDestroy?.Invoke(this);
                 DestroyBlock();
+                return true;
             }
+
+            return false;
         }
 
         public void UndoHit()
         {
-            _strengthLeft = blockData.Strength;
+//            _strengthLeft = blockData.Strength;
         }
 
         private void DestroyBlock()

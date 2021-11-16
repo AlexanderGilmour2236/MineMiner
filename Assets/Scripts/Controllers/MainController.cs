@@ -23,6 +23,12 @@ namespace Game.Controllers
         // Starting point of the game
         private void Start()
         {
+            InitControllers();
+        }
+
+        private void InitControllers()
+        {
+            blocksController.Init();
             blocksController.BlockDestroy += OnBlockDestroy;
             blocksController.SetAllBlocks(levelParent);
             cameraController.SetTargetPoint(blocksController.LevelCenterTransform);
@@ -30,14 +36,14 @@ namespace Game.Controllers
 
         private void OnBlockDestroy(BlockView block)
         {
-            
+            Destroy(block.gameObject);
         }
 
         private void Update()
         {
             InputControls();
         }
-
+        
         private void InputControls()
         {
             if (Input.GetMouseButtonDown(0))
@@ -60,6 +66,7 @@ namespace Game.Controllers
                 }
                 else
                 {
+                    _mouseDownPosition = Input.mousePosition;
                     _mouseDragPosition = _mouseDownPosition;
                 }
             }

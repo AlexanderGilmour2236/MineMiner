@@ -16,6 +16,9 @@
             <e p="CameraController.cs" t="Include" />
             <e p="MainController.cs" t="Include" />
           </e>
+          <e p="Misc" t="Include">
+            <e p="MonoPool.cs" t="Include" />
+          </e>
         </e>
       </e>
       <e p="Library" t="ExcludeRecursive" />
