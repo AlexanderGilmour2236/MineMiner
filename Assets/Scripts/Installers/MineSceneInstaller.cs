@@ -8,6 +8,7 @@ namespace MineMiner
         [SerializeField] private MineSceneAccessor mineSceneAccessor;
         [SerializeField] private AroundCameraController aroundCameraController;
         [SerializeField] private LevelCameraController levelCameraController;
+        [SerializeField] private BlocksFactory blocksFactory;
 
         public override void InstallBindings()
         {
@@ -17,6 +18,7 @@ namespace MineMiner
             Container.Bind<LevelCameraController>().FromInstance(levelCameraController);
             Container.Bind<BlocksController>().AsSingle().NonLazy();
             Container.Bind<ICameraController>().FromInstance(aroundCameraController);
+            Container.Bind<BlocksFactory>().FromInstance(blocksFactory);
             
             Container.Bind<MineSceneAccessor>().FromInstance(mineSceneAccessor);
         }

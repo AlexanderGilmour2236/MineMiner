@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2375595e3fac4cbcb427444791e3411f, type: 3}
-  m_Name: coin_rock_block
+  m_Name: coin_dropped_block
   m_EditorClassIdentifier: 
-  BlockType: 1
+  BlockType: 2
   Id: 2
-  Material: {fileID: 2100000, guid: 017cee34c87847e488fc30771f2a73ec, type: 2}
-  Strength: 1
-  Sprite: {fileID: 0}
-  DroppedBlockData: {fileID: 11400000, guid: ee6dc4b76ce010c4e90a70eb93863b9e, type: 2}
+  Sprite: {fileID: 21300000, guid: c4afa92fdde328e4c9b08414de00d704, type: 3}
+  Material: {fileID: 0}
+  Strength: 0
+  DroppedBlockData: {fileID: 0}

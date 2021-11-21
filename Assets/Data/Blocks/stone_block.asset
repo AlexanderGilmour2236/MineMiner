@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e0218e5213e463f82140168f8e6412a, type: 3}
-  m_Name: rock_block
+  m_Script: {fileID: 11500000, guid: 2375595e3fac4cbcb427444791e3411f, type: 3}
+  m_Name: stone_block
   m_EditorClassIdentifier: 
+  BlockType: 1
+  Id: 1
   Material: {fileID: 2100000, guid: ffe667efea83eea42b3e6760025719ed, type: 2}
-  Strength: 1.2
+  Strength: 0.8
+  Sprite: {fileID: 0}

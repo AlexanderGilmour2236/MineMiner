@@ -1,0 +1,14 @@
+using UnityEngine;
+
+namespace MineMiner
+{
+    public class MeshBlockRendererStrategy : BlockRendererStrategy
+    {
+        [SerializeField] private MeshRenderer meshRenderer;
+        
+        public override void SetMaterial(Material material)
+        {
+            meshRenderer.material = material;
+        }
+    }
+}

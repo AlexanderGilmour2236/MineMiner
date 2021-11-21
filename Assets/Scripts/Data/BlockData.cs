@@ -3,10 +3,13 @@ using UnityEngine;
 
 namespace MineMiner
 {
-    [Serializable][CreateAssetMenu(fileName = "newBlockData", menuName = "BlockData")]
+    [Serializable]
     public class BlockData : ScriptableObject
     {
+        public BlockType BlockType;
+        public BlockId Id;
+        public Sprite Sprite;
         public Material Material;
-        public float Strength;
+
     }
 }

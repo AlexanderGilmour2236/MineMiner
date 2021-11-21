@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e0218e5213e463f82140168f8e6412a, type: 3}
-  m_Name: grass_01_block
+  m_Script: {fileID: 11500000, guid: 2375595e3fac4cbcb427444791e3411f, type: 3}
+  m_Name: dirt_02_block
   m_EditorClassIdentifier: 
+  BlockType: 1
+  Id: 0
   Material: {fileID: 2100000, guid: ceac2eacb08a73f4fbf2fb9b4aad3c62, type: 2}
-  Strength: 0.8
+  Strength: 0.5
+  Sprite: {fileID: 0}

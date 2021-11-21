@@ -6,111 +6,40 @@ using UnityEngine.UIElements;
 namespace MineMiner
 {
     [ExecuteInEditMode]
-    public class BlockView : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+    public class BlockView : MonoBehaviour
     {
-        [SerializeField] private BlockData blockData = null;
-        [SerializeField] private MeshRenderer meshRenderer;
-        [SerializeField] private ParticleSystem destroyParticles;
+        [SerializeField] protected BlockData blockData;
+        [SerializeField] protected BlockRendererStrategy blockRendererStrategy;
+        [SerializeField] protected BlockRotationStrategy blockRotationStrategy;
         
-        private bool _isPointerDown;
-        private float _strengthLeft;
-        private BlockData _lastBlockData = null;
+        private DestroyableBlockData _lastBlockData = null;
 
-        public event Action<BlockView> onPointerDown;
-        public event Action<BlockView> onBlockDestroy;
-
-        private void Start()
+        public virtual void SetData(BlockData blockData)
         {
-            SetData(blockData);
+            this.blockData = blockData;
+            blockRendererStrategy.SetMaterial(blockData.Material);
+        }
+        
+        public virtual BlockData Data
+        {
+            get { return blockData; }
         }
 
         private void Update()
         {
-            if (_isPointerDown)
+            if(blockData != _lastBlockData)
             {
-                onPointerDown?.Invoke(this);
-            }
-
-            if (Input.GetMouseButtonUp(0))
-            {
-                _isPointerDown = false;
-            }
-            
-            if (blockData != _lastBlockData)
-            {
-                if (blockData != null && meshRenderer != null)
+                if (blockData != null && blockRendererStrategy != null)
                 {
-                    meshRenderer.material = blockData.Material;
+                    blockRendererStrategy.SetData(blockData);
                 }
             }
         }
 
-        public void SetData(BlockData blockData)
-        {
-            this.blockData = blockData;
-            _strengthLeft = this.blockData.Strength;
-            meshRenderer.material = blockData.Material;
-        }
 
-        public bool Hit(float damage)
+        public void AddRotation(Vector3 rotation)
         {
-            if (blockData == null)
-            {
-                DestroyBlock();
-                return true;
-            }
-            _strengthLeft -= damage;
-            
-            if (_strengthLeft <= 0)
-            {
-                onBlockDestroy?.Invoke(this);
-                DestroyBlock();
-                return true;
-            }
-
-            return false;
-        }
-
-        public void UndoHit()
-        {
-            _isPointerDown = false;
-        }
-
-        public void DestroyBlock()
-        {
-            Destroy(gameObject);
-        }
-
-        public float GetNormalizedValue()
-        {
-            return StrengthLeft / Data.Strength;
-        }
-        
-        public BlockData Data
-        {
-            get { return blockData; }
-        }
-        
-        public float StrengthLeft
-        {
-            get { return _strengthLeft; }
-        }
-
-        private void OnMouseOver()
-        {
-            if (Input.GetMouseButton(0))
-            {
-                _isPointerDown = true;
-            }
-        }
-
-        public void OnPointerDown(PointerEventData eventData)
-        {
-            _isPointerDown = true;
-        }
-
-        public void OnPointerUp(PointerEventData eventData)
-        {
+            blockRotationStrategy.AddPermanentRotation(rotation);
         }
     }
 
