@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Misc
+namespace MineMiner
 {
     public class MonoPool<T> where T : Component
     {
@@ -18,13 +18,13 @@ namespace Misc
 
         public T GetObject()
         {
+            T component;
             if (free.Count == 0)
             {
                 if (prefab == null)
                 {
-                    var obj = new GameObject();
-                    obj.transform.SetParent(parent, false);
-                    var component = obj.AddComponent<T>();
+                    component = new GameObject().AddComponent<T>();
+                    component.transform.SetParent(parent, false);
 
                     used.Push(component);
                     return component;
@@ -32,27 +32,24 @@ namespace Misc
                 else
                 {
                     GameObject newObject = Object.Instantiate(prefab.gameObject, parent);
-                    T component = newObject.GetComponent<T>();
+                    component = newObject.GetComponent<T>();
                     used.Push(component);
                     return component;
                 }
             }
-            else
-            {
-                var obj = free.Pop();
-                obj.gameObject.SetActive(true);
-                used.Push(obj);
-                Debug.Log($"Get from pool {obj.gameObject.name}");
-                return obj;
-            }
+
+            component = free.Pop();
+            component.gameObject.SetActive(true);
+            used.Push(component);
+            return component;
         }
+
 
         public void ReleaseObject(T obj)
         {
             used.Pop();
             obj.gameObject.SetActive(false);
             free.Push(obj);
-            Debug.Log($"Released {obj.gameObject.name}");
         }
 
         public void Dispose()

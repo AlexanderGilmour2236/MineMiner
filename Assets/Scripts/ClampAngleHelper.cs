@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace misc
+namespace Misc
 {
     public static class ClampAngleHelper
     {
