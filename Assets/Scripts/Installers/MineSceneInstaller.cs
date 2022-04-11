@@ -5,22 +5,22 @@ namespace MineMiner
 {
     public class MineSceneInstaller : MonoInstaller
     {
-        [SerializeField] private MineSceneAccessor mineSceneAccessor;
-        [SerializeField] private AroundCameraController aroundCameraController;
-        [SerializeField] private LevelCameraController levelCameraController;
-        [SerializeField] private BlocksFactory blocksFactory;
+        [SerializeField] private MineSceneAccessor _mineSceneAccessor;
+        [SerializeField] private AroundCameraController _aroundCameraController;
+        [SerializeField] private LevelCameraController _levelCameraController;
+        [SerializeField] private BlocksFactory _blocksFactory;
 
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<App>().AsSingle().NonLazy();
 
             Container.Bind<MineSceneNavigator>().AsSingle().NonLazy();
-            Container.Bind<LevelCameraController>().FromInstance(levelCameraController);
+            Container.Bind<LevelCameraController>().FromInstance(_levelCameraController);
             Container.Bind<BlocksController>().AsSingle().NonLazy();
-            Container.Bind<ICameraController>().FromInstance(aroundCameraController);
-            Container.Bind<BlocksFactory>().FromInstance(blocksFactory);
+            Container.Bind<ICameraController>().FromInstance(_aroundCameraController);
+            Container.Bind<BlocksFactory>().FromInstance(_blocksFactory);
             
-            Container.Bind<MineSceneAccessor>().FromInstance(mineSceneAccessor);
+            Container.Bind<MineSceneAccessor>().FromInstance(_mineSceneAccessor);
         }
     }
 }

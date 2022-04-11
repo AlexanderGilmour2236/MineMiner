@@ -4,23 +4,23 @@ namespace MineMiner
 {
     public class MineSceneAccessor : MonoBehaviour
     {
-        [SerializeField] private Transform levelParent;
-        [SerializeField] private Transform levelCenterTransform;
-        [SerializeField] private CracksBlock cracksBlockPrefab;
+        [SerializeField] private Transform _levelParent;
+        [SerializeField] private Transform _levelCenterTransform;
+        [SerializeField] private CracksBlock _cracksBlockPrefab;
 
         public Transform LevelParent
         {
-            get { return levelParent; }
+            get { return _levelParent; }
         }
 
         public Transform LevelCenterTransform 
         {
-            get { return levelCenterTransform; } 
+            get { return _levelCenterTransform; } 
         }
 
         public CracksBlock CracksBlockPrefab
         {
-            get { return cracksBlockPrefab; }
+            get { return _cracksBlockPrefab; }
         }
     }
 }

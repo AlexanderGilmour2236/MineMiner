@@ -1,20 +1,35 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace MineMiner 
 {
     public class BlocksFactory : MonoBehaviour
     {
-        [SerializeField] BlockView defaultBlockPrefab;
-        [SerializeField] BlockView droppedBlockPrefab;
-        [SerializeField] SpiteBlockView droppedSpriteBlockPrefab;
+        [SerializeField] BlockView _defaultBlockPrefab;
+        [SerializeField] BlockView _droppedBlockPrefab;
+        [SerializeField] SpiteBlockView _droppedSpriteBlockPrefab;
 
-        public BlockView GetDroppedBlockView(DestroyableBlockData blockData)
+        public BlockView[] GetDroppedBlockView(DestroyableBlockData blockData)
         {
-            BlockView blockView = Instantiate(GetDroppedBlockPrefab(blockData));
-            blockView.SetData(blockData);
-            return blockView;
+            int randomValue = 1;
+            DroppedBlockData droppedBlockData = blockData.DroppedBlockData;
+            if (droppedBlockData != null)
+            {
+                randomValue = Random.Range(droppedBlockData.DroppedMinCount, droppedBlockData.DroppedMaxCount);
+            }
+            
+            BlockView[] droppedBlocks = new BlockView[randomValue];
+            for (int i = 0; i < randomValue; i++)
+            {
+                BlockView blockView = Instantiate(GetDroppedBlockPrefab(blockData));
+                blockView.SetData(blockData);
+                droppedBlocks[i] = blockView;
+            }
+            
+            return droppedBlocks;
            
         }
 
@@ -22,15 +37,15 @@ namespace MineMiner
         {
             if (blockData.DroppedBlockData == null)
             {
-                return droppedBlockPrefab;
+                return _droppedBlockPrefab;
             }
             
-            switch (blockData.DroppedBlockData.BlockType)
+            switch (blockData.DroppedBlockData._blockType)
             {
                 case BlockType.DefaultBlock:
-                    return droppedBlockPrefab;
+                    return _droppedBlockPrefab;
                 case BlockType.SpriteBlock:
-                    return droppedSpriteBlockPrefab;
+                    return _droppedSpriteBlockPrefab;
             }
 
             return null;

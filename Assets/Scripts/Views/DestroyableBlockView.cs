@@ -4,9 +4,10 @@ using UnityEngine.EventSystems;
 
 namespace MineMiner
 {
+    [ExecuteInEditMode]
     public class DestroyableBlockView : BlockView, IPointerDownHandler, IPointerUpHandler
     {
-        [SerializeField] private DestroyableBlockData destroyableBlockData;
+        [SerializeField] private DestroyableBlockData _destroyableBlockData;
         
         private bool _isPointerDown;
         private float _strengthLeft;
@@ -16,18 +17,21 @@ namespace MineMiner
 
         private void Start()
         {
-            SetData(blockData);
+            SetData(_blockData);
         }
 
-        private void Update()
+        public override void Update()
         {
+            base.Update();
             if (_isPointerDown)
             {
+                print("pointer down");
                 onPointerDown?.Invoke(this);
             }
 
             if (Input.GetMouseButtonUp(0))
             {
+                print("on pointer up");
                 _isPointerDown = false;
             }
         }
@@ -35,29 +39,32 @@ namespace MineMiner
         public void SetData(DestroyableBlockData blockData)
         {
             base.SetData(blockData);
-            destroyableBlockData = blockData;
-            _strengthLeft = destroyableBlockData.Strength;
+            _destroyableBlockData = blockData;
+            _strengthLeft = _destroyableBlockData.Strength;
         }
 
         public override void SetData(BlockData blockData)
         {
             base.SetData(blockData);
-            destroyableBlockData = blockData as DestroyableBlockData;
-            if (destroyableBlockData != null)
+            _destroyableBlockData = blockData as DestroyableBlockData;
+            if (_destroyableBlockData != null)
             {
-                SetData(destroyableBlockData);
+                SetData(_destroyableBlockData);
             }
         }
 
+        /// <summary>
+        /// Applies damage to block, returns true if block destroyed
+        /// </summary>
         public bool Hit(float damage)
         {
-            if (blockData == null)
+            if (_blockData == null)
             {
                 DestroyBlock();
                 return true;
             }
             _strengthLeft -= damage;
-            
+
             if (_strengthLeft <= 0)
             {
                 onBlockDestroy?.Invoke(this);
@@ -70,6 +77,7 @@ namespace MineMiner
 
         public void UndoHit()
         {
+            print("UndoHit");
             _isPointerDown = false;
         }
 
@@ -80,7 +88,7 @@ namespace MineMiner
 
         public float GetNormalizedValue()
         {
-            return StrengthLeft / destroyableBlockData.Strength;
+            return StrengthLeft / _destroyableBlockData.Strength;
         }
 
         private void OnMouseOver()
@@ -89,6 +97,11 @@ namespace MineMiner
             {
                 _isPointerDown = true;
             }
+        }
+
+        private void OnMouseExit()
+        {
+            _isPointerDown = false;
         }
 
         public void OnPointerDown(PointerEventData eventData)
@@ -107,7 +120,7 @@ namespace MineMiner
 
         public DestroyableBlockData DestroyableBlockData
         {
-            get { return destroyableBlockData; }
+            get { return _destroyableBlockData; }
         }
     }
 }

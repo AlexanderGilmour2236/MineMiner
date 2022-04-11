@@ -4,11 +4,11 @@ namespace MineMiner
 {
     public class MeshBlockRendererStrategy : BlockRendererStrategy
     {
-        [SerializeField] private MeshRenderer meshRenderer;
+        [SerializeField] private MeshRenderer _meshRenderer;
         
         public override void SetMaterial(Material material)
         {
-            meshRenderer.material = material;
+            _meshRenderer.material = material;
         }
     }
 }

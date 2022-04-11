@@ -394,10 +394,10 @@
           </e>
           <e p="Views" t="Include">
             <e p="BlockStrategies" t="Include">
+              <e p="BlockMovementStrategy.cs" t="Include" />
               <e p="BlockRendererStrategy.cs" t="Include" />
-              <e p="BlockRotationStrategy.cs" t="Include" />
               <e p="MeshBlockRendererStrategy.cs" t="Include" />
-              <e p="RigidBodyBlockRotationStrategy.cs" t="Include" />
+              <e p="RigidbodyBlockMovementStrategy.cs" t="Include" />
               <e p="SpriteBlockRendererStrategy.cs" t="Include" />
             </e>
             <e p="BlockView.cs" t="Include" />

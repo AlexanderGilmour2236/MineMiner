@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 186290fe256e4291b0594dc7344a89dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockData: {fileID: 11400000, guid: 1155810ba0921d346aaf8e8c8835624e, type: 2}
-  blockRendererStrategy: {fileID: -6704725618633818351}
-  blockRotationStrategy: {fileID: 1051421613475432720}
+  _blockData: {fileID: 0}
+  _blockRendererStrategy: {fileID: -6704725618633818351}
+  _blockMovementStrategy: {fileID: 1051421613475432720}
 --- !u!54 &7988551614404452672
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d014efd3aed4c91969e91d0637dd99e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshRenderer: {fileID: 2047212105243503907}
+  _meshRenderer: {fileID: 2047212105243503907}
 --- !u!114 &1051421613475432720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 487ec4497cb144719fec041f00d3e637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 7988551614404452672}
+  _rigidBody: {fileID: 7988551614404452672}
 --- !u!1001 &840129352854778279
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,14 +4,14 @@ namespace MineMiner
 {
     public class CracksBlock : MonoBehaviour
     {
-        [SerializeField] private Material[] sortedMaterials;
-        [SerializeField] private MeshRenderer meshRenderer;
+        [SerializeField] private Material[] _sortedMaterials;
+        [SerializeField] private MeshRenderer _meshRenderer;
         
         public void SetNormalizedValue(float value)
         {
             value = Mathf.Clamp(value, 0,1);
-            int index = (int)(sortedMaterials.Length * value);
-            meshRenderer.material = sortedMaterials[index];
+            int index = (int)(_sortedMaterials.Length * value);
+            _meshRenderer.material = _sortedMaterials[index];
         }
     }
 }

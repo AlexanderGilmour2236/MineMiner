@@ -9,7 +9,7 @@ namespace MineMiner
         [Inject] private BlocksController _blocksController;
         [Inject] private ICameraController _aroundCameraController;
         
-        [SerializeField] private float mouseSensitivity = 0.3f;
+        [SerializeField] private float _mouseSensitivity = 0.3f;
         
         private bool _pointerDown;
         private Vector3 _mouseDownPosition = Vector3.zero;
@@ -19,8 +19,8 @@ namespace MineMiner
         {
             _blocksController.Tick();
 
-            float xRotation = (_mouseDragPosition.y - _mouseDownPosition.y) * mouseSensitivity;
-            float yRotation = (_mouseDragPosition.x - _mouseDownPosition.x) * mouseSensitivity;
+            float xRotation = (_mouseDragPosition.y - _mouseDownPosition.y) * _mouseSensitivity;
+            float yRotation = (_mouseDragPosition.x - _mouseDownPosition.x) * _mouseSensitivity;
 
             _aroundCameraController.Rotate(new Vector3(-xRotation, yRotation));
 

@@ -8,30 +8,30 @@ namespace MineMiner
     [ExecuteInEditMode]
     public class BlockView : MonoBehaviour
     {
-        [SerializeField] protected BlockData blockData;
-        [SerializeField] protected BlockRendererStrategy blockRendererStrategy;
-        [SerializeField] protected BlockRotationStrategy blockRotationStrategy;
+        [SerializeField] protected BlockData _blockData;
+        [SerializeField] protected BlockRendererStrategy _blockRendererStrategy;
+        [SerializeField] protected BlockMovementStrategy _blockMovementStrategy;
         
         private DestroyableBlockData _lastBlockData = null;
 
         public virtual void SetData(BlockData blockData)
         {
-            this.blockData = blockData;
-            blockRendererStrategy.SetMaterial(blockData.Material);
+            _blockData = blockData;
+            _blockRendererStrategy.SetMaterial(blockData._material);
         }
         
         public virtual BlockData Data
         {
-            get { return blockData; }
+            get { return _blockData; }
         }
 
-        private void Update()
+        public virtual void Update()
         {
-            if(blockData != _lastBlockData)
+            if(_blockData != _lastBlockData)
             {
-                if (blockData != null && blockRendererStrategy != null)
+                if (_blockData != null && _blockRendererStrategy != null)
                 {
-                    blockRendererStrategy.SetData(blockData);
+                    _blockRendererStrategy.SetData(_blockData);
                 }
             }
         }
@@ -39,7 +39,12 @@ namespace MineMiner
 
         public void AddRotation(Vector3 rotation)
         {
-            blockRotationStrategy.AddPermanentRotation(rotation);
+            _blockMovementStrategy.AddTorque(rotation);
+        }
+
+        public void AddForce(Vector3 movement)
+        {
+            _blockMovementStrategy.AddForce(movement);
         }
     }
 

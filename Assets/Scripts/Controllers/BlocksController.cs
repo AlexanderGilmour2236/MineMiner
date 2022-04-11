@@ -15,7 +15,6 @@ namespace MineMiner
         public event Action<BlockView> onBlockDestroy;
         public event Action<BlockView> onBlockHit;
 
-        private DestroyableBlockView _hittingBlockView;
         private bool _undoRaycastHit;
         private bool _isHittingBlockInCurrentFrame;
         private MonoPool<CracksBlock> _cracksBlocksPool;
@@ -38,7 +37,7 @@ namespace MineMiner
             
             if (!_isHittingBlockInCurrentFrame)
             {
-                if (_hittingBlockView != null)
+                if (_currentHittingBlock != null)
                 {
                     _undoRaycastHit = true;
                 }
@@ -46,7 +45,7 @@ namespace MineMiner
 
             if (_undoRaycastHit)
             {
-                _hittingBlockView = null;
+                _currentHittingBlock = null;
             }
             
             _isHittingBlockInCurrentFrame = false;
@@ -74,7 +73,7 @@ namespace MineMiner
 
         private void OnBlockDestroy(DestroyableBlockView block)
         {
-            _undoRaycastHit = true;
+//            _undoRaycastHit = true;
             onBlockDestroy?.Invoke(block);
             _currentBlocks.Remove(block);
             _centerPoint = FindCenterPoint(_currentBlocks);
@@ -87,10 +86,14 @@ namespace MineMiner
 
         private void CreateDroppedBlock(DestroyableBlockView block)
         {
-            BlockView droppedBlockView = _blocksFactory.GetDroppedBlockView(block.DestroyableBlockData);
-            droppedBlockView.transform.position = block.transform.position;
-            droppedBlockView.AddRotation(new Vector3(Random.Range(0, 180), Random.Range(0, 180),
-                Random.Range(0, 180)));
+            BlockView[] droppedBlockViews = _blocksFactory.GetDroppedBlockView(block.DestroyableBlockData);
+            foreach (BlockView droppedBlockView in droppedBlockViews)
+            {
+                droppedBlockView.AddForce(new Vector3(Random.Range(-1, 1), Random.Range(0.5f, 1), Random.Range(-1, 1)));
+                droppedBlockView.transform.position = block.transform.position;
+                droppedBlockView.AddRotation(new Vector3(Random.Range(0, 180), Random.Range(0, 180),
+                    Random.Range(0, 180))); 
+            }
         }
 
         Vector3 FindCenterPoint(List<DestroyableBlockView> blocks)
@@ -115,31 +118,29 @@ namespace MineMiner
                 _currentHittingBlock.UndoHit();
             }
             _currentHittingBlock = blockView;
-            _isHittingBlockInCurrentFrame = true;
+//            _isHittingBlockInCurrentFrame = true;
             
-//            Transform objectHit = blockView.transform;
-//            DestroyableBlockView newBlockView = objectHit.GetComponent<DestroyableBlockView>();
-//                
-            _hittingBlockView = blockView;
-            if (_hittingBlockView.Hit(Time.deltaTime * App.Instance().Player.Damage))
+            _currentHittingBlock = blockView;
+            
+            if (_currentHittingBlock.Hit(Time.deltaTime * App.Instance().Player.Damage))
             {
                 return;
             }
 
             CracksBlock cracksBlock;
-            if (!_blockToCracks.ContainsKey(_hittingBlockView))
+            if (!_blockToCracks.ContainsKey(_currentHittingBlock))
             {
                 cracksBlock = _cracksBlocksPool.GetObject();
-                cracksBlock.transform.position = _hittingBlockView.transform.position;
+                cracksBlock.transform.position = _currentHittingBlock.transform.position;
             }
             else
             {
-                cracksBlock = _blockToCracks[_hittingBlockView];
+                cracksBlock = _blockToCracks[_currentHittingBlock];
             }
             
-            cracksBlock.SetNormalizedValue(_hittingBlockView.GetNormalizedValue());
+            cracksBlock.SetNormalizedValue(_currentHittingBlock.GetNormalizedValue());
 
-            _blockToCracks[_hittingBlockView] = cracksBlock;
+            _blockToCracks[_currentHittingBlock] = cracksBlock;
         }
         
         public Transform LevelCenterTransform

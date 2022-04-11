@@ -48,9 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f49bd7418b8d4267ba338fd78f36a906, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blockData: {fileID: 11400000, guid: ee6dc4b76ce010c4e90a70eb93863b9e, type: 2}
-  blockRendererStrategy: {fileID: 8113191697517590048}
-  blockRotationStrategy: {fileID: 6388292691559349003}
+  _blockData: {fileID: 0}
+  _blockRendererStrategy: {fileID: 8113191697517590048}
+  _blockMovementStrategy: {fileID: 6388292691559349003}
 --- !u!54 &7988551614404452672
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8ab8c1ab35d42cdb1f368b72f07c746, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 857579766588413198}
+  _spriteRenderer: {fileID: 857579766588413198}
 --- !u!114 &6388292691559349003
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 487ec4497cb144719fec041f00d3e637, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rigidbody: {fileID: 7988551614404452672}
+  _rigidBody: {fileID: 7988551614404452672}
 --- !u!1 &5922995106009100156
 GameObject:
   m_ObjectHideFlags: 0

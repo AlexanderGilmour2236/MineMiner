@@ -4,11 +4,11 @@ namespace MineMiner
 {
     public class SpriteBlockRendererStrategy : BlockRendererStrategy
     {
-        [SerializeField] private SpriteRenderer spriteRenderer;
+        [SerializeField] private SpriteRenderer _spriteRenderer;
 
         public override void SetSprite(Sprite sprite)
         {
-            spriteRenderer.sprite = sprite;
+            _spriteRenderer.sprite = sprite;
         }
     }
 }

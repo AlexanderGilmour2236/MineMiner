@@ -23,7 +23,7 @@ namespace MineMiner
             }
         }
 
-        public virtual void SetNavigator(Navigator parentNavigator)
+        public virtual void SetParentNavigator(Navigator parentNavigator)
         {
             _parentNavigator = parentNavigator;
         }
