@@ -11,7 +11,6 @@ namespace MineMiner
         
         [SerializeField] private float _mouseSensitivity = 0.3f;
         
-        private bool _pointerDown;
         private Vector3 _mouseDownPosition = Vector3.zero;
         private Vector2 _mouseDragPosition = Vector2.zero;
         
@@ -29,27 +28,16 @@ namespace MineMiner
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            _pointerDown = true;
             _mouseDownPosition = Input.mousePosition;
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            _pointerDown = false;
         }
 
         public void OnDrag(PointerEventData eventData)
         {
-//            Ray ray = _aroundCameraController.Camera.ScreenPointToRay(Input.mousePosition);
-//            if (!_blocksController.OnBlockHit(ray))
-//            {
-                _mouseDragPosition = Input.mousePosition;
-//            }
-//            else
-//            {
-//                _mouseDownPosition = Input.mousePosition;
-//                _mouseDragPosition = _mouseDownPosition;
-//            }
+            _mouseDragPosition = Input.mousePosition;
         }
 
         public void StopDrag()

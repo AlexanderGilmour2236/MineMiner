@@ -12,7 +12,7 @@ namespace MineMiner
         [SerializeField] BlockView _droppedBlockPrefab;
         [SerializeField] SpiteBlockView _droppedSpriteBlockPrefab;
 
-        public BlockView[] GetDroppedBlockView(DestroyableBlockData blockData)
+        public BlockView[] GetDroppedBlockViews(DestroyableBlockData blockData)
         {
             int randomValue = 1;
             DroppedBlockData droppedBlockData = blockData.DroppedBlockData;

@@ -73,7 +73,6 @@ namespace MineMiner
 
         private void OnBlockDestroy(DestroyableBlockView block)
         {
-//            _undoRaycastHit = true;
             onBlockDestroy?.Invoke(block);
             _currentBlocks.Remove(block);
             _centerPoint = FindCenterPoint(_currentBlocks);
@@ -86,7 +85,7 @@ namespace MineMiner
 
         private void CreateDroppedBlock(DestroyableBlockView block)
         {
-            BlockView[] droppedBlockViews = _blocksFactory.GetDroppedBlockView(block.DestroyableBlockData);
+            BlockView[] droppedBlockViews = _blocksFactory.GetDroppedBlockViews(block.DestroyableBlockData);
             foreach (BlockView droppedBlockView in droppedBlockViews)
             {
                 droppedBlockView.AddForce(new Vector3(Random.Range(-1, 1), Random.Range(0.5f, 1), Random.Range(-1, 1)));
