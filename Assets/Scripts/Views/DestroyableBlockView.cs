@@ -12,7 +12,9 @@ namespace MineMiner
         private bool _isPointerDown;
         private float _strengthLeft;
 
-        public event Action<DestroyableBlockView> onPointerDown;
+        public event Action<DestroyableBlockView> onHit;
+        public event Action<DestroyableBlockView> onLeftPointerDown;
+        public event Action<DestroyableBlockView> onRightPointerDown;
         public event Action<DestroyableBlockView> onBlockDestroy;
 
         private void Start()
@@ -25,13 +27,11 @@ namespace MineMiner
             base.Update();
             if (_isPointerDown)
             {
-                print("pointer down");
-                onPointerDown?.Invoke(this);
+                onHit?.Invoke(this);
             }
 
             if (Input.GetMouseButtonUp(0))
             {
-                print("on pointer up");
                 _isPointerDown = false;
             }
         }
@@ -107,6 +107,14 @@ namespace MineMiner
         public void OnPointerDown(PointerEventData eventData)
         {
             _isPointerDown = true;
+            if (Input.GetMouseButtonDown(0))
+            {
+                onLeftPointerDown?.Invoke(this);
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                onRightPointerDown?.Invoke(this);
+            }
         }
 
         public void OnPointerUp(PointerEventData eventData)

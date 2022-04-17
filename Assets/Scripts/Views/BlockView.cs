@@ -17,7 +17,12 @@ namespace MineMiner
         public virtual void SetData(BlockData blockData)
         {
             _blockData = blockData;
-            _blockRendererStrategy.SetMaterial(blockData._material);
+            _blockRendererStrategy.SetMaterial(blockData.Material);
+        }
+
+        public virtual void SetPosition(Vector3 position)
+        {
+            transform.position = position;
         }
         
         public virtual BlockData Data

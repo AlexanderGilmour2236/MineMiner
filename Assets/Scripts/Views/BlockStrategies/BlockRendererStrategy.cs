@@ -14,13 +14,13 @@ namespace MineMiner
 
         public void SetData(BlockData blockData)
         {
-            switch (blockData._blockType)
+            switch (blockData.BlockType)
             {
                 case BlockType.DefaultBlock:
-                    SetMaterial(blockData._material);
+                    SetMaterial(blockData.Material);
                     break;
                 case BlockType.SpriteBlock:
-                    SetSprite(blockData._sprite);
+                    SetSprite(blockData.Sprite);
                     break;
             }
         }

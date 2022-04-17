@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2375595e3fac4cbcb427444791e3411f, type: 3}
   m_Name: coin_rock_block
   m_EditorClassIdentifier: 
-  _blockType: 1
-  _id: 2
-  _sprite: {fileID: 21300000, guid: c4afa92fdde328e4c9b08414de00d704, type: 3}
-  _material: {fileID: 2100000, guid: 017cee34c87847e488fc30771f2a73ec, type: 2}
+  BlockType: 1
+  Id: 2
+  Sprite: {fileID: 0}
+  Material: {fileID: 2100000, guid: 017cee34c87847e488fc30771f2a73ec, type: 2}
   Strength: 1
   DroppedBlockData: {fileID: 11400000, guid: 9d79b9d8878270d4e9e6d5ae8b1142ec, type: 2}

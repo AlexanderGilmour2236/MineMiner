@@ -58,14 +58,14 @@ namespace MineMiner
             foreach (DestroyableBlockView block in _currentBlocks)
             {
                 block.onBlockDestroy += OnBlockDestroy;
-                block.onPointerDown += OnPointerDown;
+                block.onHit += ONHit;
             }
             
             _centerPoint = FindCenterPoint(_currentBlocks);
             _levelCenterTransform.position = _centerPoint;
         }
 
-        private void OnPointerDown(DestroyableBlockView blockView)
+        private void ONHit(DestroyableBlockView blockView)
         {
             OnBlockHit(blockView);
             onBlockHit?.Invoke(blockView);
@@ -121,7 +121,7 @@ namespace MineMiner
             
             _currentHittingBlock = blockView;
             
-            if (_currentHittingBlock.Hit(Time.deltaTime * App.Instance().Player.Damage))
+            if (_currentHittingBlock.Hit(Time.deltaTime * ((GameApp)App.Instance()).Player.Damage))
             {
                 return;
             }

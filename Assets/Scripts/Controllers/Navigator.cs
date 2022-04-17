@@ -4,8 +4,9 @@ namespace MineMiner
 {
     public class Navigator
     {
-        private Navigator _parentNavigator;
-
+        protected Navigator _parentNavigator;
+        protected bool _isControllersInitiated;
+        
         public virtual void Go()
         {
             App.Instance().SetActiveNavigator(this);

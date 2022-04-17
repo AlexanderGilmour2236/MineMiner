@@ -6,10 +6,11 @@ namespace MineMiner
     [Serializable]
     public class BlockData : ScriptableObject
     {
-        public BlockType _blockType;
-        public BlockId _id;
-        public Sprite _sprite;
-        public Material _material;
+        public BlockType BlockType;
+        public BlockId Id;
+        public Sprite Sprite;
+        public Material Material;
+        public Vector3Int Position;
 
     }
 }

@@ -1,28 +1,42 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 using Random = UnityEngine.Random;
 
 namespace MineMiner 
 {
     public class BlocksFactory : MonoBehaviour
     {
-        [SerializeField] BlockView _defaultBlockPrefab;
-        [SerializeField] BlockView _droppedBlockPrefab;
-        [SerializeField] SpiteBlockView _droppedSpriteBlockPrefab;
+        [SerializeField] private DestroyableBlockView _defaultDestroyableBlockPrefab;
+        
+        [SerializeField] private BlockView _droppedBlockPrefab;
+        [SerializeField] private SpiteBlockView _droppedSpriteBlockPrefab;
+        [SerializeField] private DestroyableBlockData _defaultBlockData;
+        
+        private float? _cachedBlockSize;
+
+        public float BlockSize
+        {
+            get
+            {
+                if (_cachedBlockSize == null)
+                {
+                    _cachedBlockSize = _defaultDestroyableBlockPrefab.gameObject.GetComponent<BoxCollider>().bounds.size.x;
+                }
+                return _cachedBlockSize.Value;
+            }
+        }
 
         public BlockView[] GetDroppedBlockViews(DestroyableBlockData blockData)
         {
-            int randomValue = 1;
+            int droppedBlocksCount = 1;
             DroppedBlockData droppedBlockData = blockData.DroppedBlockData;
             if (droppedBlockData != null)
             {
-                randomValue = Random.Range(droppedBlockData.DroppedMinCount, droppedBlockData.DroppedMaxCount);
+                droppedBlocksCount = Random.Range(droppedBlockData.DroppedMinCount, droppedBlockData.DroppedMaxCount);
             }
             
-            BlockView[] droppedBlocks = new BlockView[randomValue];
-            for (int i = 0; i < randomValue; i++)
+            BlockView[] droppedBlocks = new BlockView[droppedBlocksCount];
+            for (int i = 0; i < droppedBlocksCount; i++)
             {
                 BlockView blockView = Instantiate(GetDroppedBlockPrefab(blockData));
                 blockView.SetData(blockData);
@@ -39,16 +53,44 @@ namespace MineMiner
             {
                 return _droppedBlockPrefab;
             }
-            
-            switch (blockData.DroppedBlockData._blockType)
+
+            return GetDroppedBlockPrefab(blockData.DroppedBlockData);
+        }
+
+        private BlockView GetDroppedBlockPrefab(BlockData blockDataDroppedBlockData)
+        {
+            BlockType blockType = blockDataDroppedBlockData.BlockType;
+            switch (blockType)
             {
                 case BlockType.DefaultBlock:
                     return _droppedBlockPrefab;
                 case BlockType.SpriteBlock:
                     return _droppedSpriteBlockPrefab;
+                default: 
+                    throw new Exception($"Cannot find block prefab with type: {blockType}");
+            }
+        }
+
+        public DestroyableBlockView GetDestroyableBlockView(DestroyableBlockData blockData = null, Transform parent = null)
+        {
+            if (parent == null)
+            {
+                parent = transform;
             }
 
-            return null;
+            if (blockData == null)
+            {
+                blockData = _defaultBlockData;
+            }
+
+            DestroyableBlockView blockView = Instantiate(GetDestroyableBlockPrefab(blockData), parent);
+            blockView.SetData(blockData);
+            return blockView;
+        }
+
+        private DestroyableBlockView GetDestroyableBlockPrefab(DestroyableBlockData blockData)
+        {
+            return _defaultDestroyableBlockPrefab;
         }
     }
 }

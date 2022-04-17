@@ -5,12 +5,13 @@ namespace MineMiner
 {
     public class MineSceneNavigator : Navigator
     {
-        [Inject] private ICameraController _cameraController;
         [Inject] private BlocksController _blocksController;
         [Inject] private LevelCameraController _levelCameraController;
 
         [Inject] private MineSceneAccessor _mineSceneAccessor;
-        
+
+        private bool _isNaviatorInitiated;
+
         public override void Go()
         {
             base.Go();
@@ -19,6 +20,12 @@ namespace MineMiner
 
         public override void Tick()
         {
+            if (!_isNaviatorInitiated)
+            {
+                return;
+            }
+            
+            _blocksController.Tick();
             _levelCameraController.Tick();
         }
 
@@ -28,8 +35,10 @@ namespace MineMiner
             _blocksController.onBlockDestroy += OnOnBlockDestroy;
             _blocksController.onBlockHit += OnBlockHit;
             _blocksController.SetAllBlocks(_mineSceneAccessor.LevelParent);
+
+            _levelCameraController.Init();
             
-            _cameraController.SetTargetPoint(_blocksController.LevelCenterTransform);
+            _isNaviatorInitiated = true;
         }
 
         private void OnBlockHit(BlockView blockView)

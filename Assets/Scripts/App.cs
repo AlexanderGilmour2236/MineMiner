@@ -4,17 +4,10 @@ namespace MineMiner
 {
     public class App : ITickable
     {
-        [Inject] private MineSceneNavigator _mineSceneNavigator;
-        
         private static App _instance;
         private Navigator _activeNavigator;
-        private Player _player;
 
-        public void StartGame()
-        {
-            _player = new Player();
-            _mineSceneNavigator.Go();
-        }
+        public virtual void StartGame() { }
 
         public App()
         {
@@ -42,11 +35,6 @@ namespace MineMiner
         public void SetActiveNavigator(Navigator navigator)
         {
             _activeNavigator = navigator;
-        }
-
-        public Player Player
-        {
-            get { return _player; }
         }
     }
 }
