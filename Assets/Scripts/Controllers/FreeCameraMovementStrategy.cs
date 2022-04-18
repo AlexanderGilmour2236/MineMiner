@@ -24,12 +24,14 @@ namespace MineMiner
 
         public void Rotate(Vector3 rotation)
         {
-            _targetPoint.Rotate(rotation);
+            _targetPoint.transform.Rotate(rotation);
+            _camera.transform.Rotate(rotation);
         }
 
-        public void RotateQuaternion(Quaternion rotation)
+        public void Rotate(Quaternion rotation)
         {
-            _targetPoint.Rotate(rotation.eulerAngles);
+            _targetPoint.transform.localRotation = rotation;
+            _camera.transform.localRotation = rotation;
         }
 
         public void Tick()

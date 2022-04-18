@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace MineMiner
 {
@@ -9,16 +10,33 @@ namespace MineMiner
         [SerializeField] private float _cameraLerpSpeed;
         [SerializeField] private Transform _cameraTargetPoint;
         [SerializeField] private float _moveSpeed;
+        [SerializeField] private float _rotationSpeed = 3;
+        [SerializeField] private int _yRotationLimit = 88;
 
         private ICameraMovementStrategy _freeCameraMovementStrategy;
+        private Vector3 _rotation = Vector3.zero;
 
         public void Init()
         {
             _freeCameraMovementStrategy = new FreeCameraMovementStrategy(_camera, _cameraLerpSpeed, _cameraTargetPoint);
+            Cursor.lockState = CursorLockMode.None;
         }
 
         public void Tick()
         {
+            if (Cursor.lockState == CursorLockMode.Locked)
+            {
+                _rotation.x += Input.GetAxis("Mouse X") * _rotationSpeed;
+                _rotation.y += Input.GetAxis("Mouse Y") * _rotationSpeed; 
+
+                _rotation.y = Mathf.Clamp(_rotation.y, -_yRotationLimit, _yRotationLimit);
+
+                var xQuat = Quaternion.AngleAxis(_rotation.x, Vector3.up);
+                var yQuat = Quaternion.AngleAxis(_rotation.y, Vector3.left);
+
+                _freeCameraMovementStrategy.Rotate( xQuat * yQuat);
+            }
+            
             if (Input.GetKey(KeyCode.W))
             {
                 _cameraTargetPoint.Translate(Vector3.forward * _moveSpeed, Space.Self);
@@ -43,6 +61,7 @@ namespace MineMiner
             {
                 _cameraTargetPoint.Translate(Vector3.up * _moveSpeed, Space.Self);
             }
+
 
             _freeCameraMovementStrategy.Tick();
         }

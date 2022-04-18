@@ -44,7 +44,7 @@ namespace MineMiner
             _cameraPivot.transform.localEulerAngles = angles;
         }
         
-        public void RotateQuaternion(Quaternion rotation)
+        public void Rotate(Quaternion rotation)
         {
             _cameraPivot.transform.rotation = Quaternion.identity * rotation;
             

@@ -6,7 +6,7 @@ namespace MineMiner
     {
         void SetTargetPoint(Transform point);
         void Rotate(Vector3 rotation);
-        void RotateQuaternion(Quaternion rotation);
+        void Rotate(Quaternion rotation);
         void Tick();
         Camera Camera { get; }
     }
