@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: coin_rock_block
   m_EditorClassIdentifier: 
   BlockType: 1
-  Id: 2
+  Id: 5
   Sprite: {fileID: 0}
   Material: {fileID: 2100000, guid: 017cee34c87847e488fc30771f2a73ec, type: 2}
   Strength: 1
-  DroppedBlockData: {fileID: 11400000, guid: 9d79b9d8878270d4e9e6d5ae8b1142ec, type: 2}
+  droppedBlockMetaData: {fileID: 0}

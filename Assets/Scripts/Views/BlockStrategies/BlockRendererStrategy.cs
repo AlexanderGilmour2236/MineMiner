@@ -12,15 +12,15 @@ namespace MineMiner
         {
         }
 
-        public void SetData(BlockData blockData)
+        public void SetData(BlockMetaData blockMetaData)
         {
-            switch (blockData.BlockType)
+            switch (blockMetaData.BlockType)
             {
                 case BlockType.DefaultBlock:
-                    SetMaterial(blockData.Material);
+                    SetMaterial(blockMetaData.Material);
                     break;
                 case BlockType.SpriteBlock:
-                    SetSprite(blockData.Sprite);
+                    SetSprite(blockMetaData.Sprite);
                     break;
             }
         }

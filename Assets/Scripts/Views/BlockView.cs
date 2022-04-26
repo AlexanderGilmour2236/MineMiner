@@ -8,16 +8,22 @@ namespace MineMiner
     [ExecuteInEditMode]
     public class BlockView : MonoBehaviour
     {
-        [SerializeField] protected BlockData _blockData;
+        [SerializeField] protected BlockMetaData blockMetaData;
         [SerializeField] protected BlockRendererStrategy _blockRendererStrategy;
         [SerializeField] protected BlockMovementStrategy _blockMovementStrategy;
         
-        private DestroyableBlockData _lastBlockData = null;
+        private BlockMetaData _lastBlockMetaData = null;
+        protected BlockData _blockData;
+            
+        public virtual void SetMetaData(BlockMetaData blockMetaData)
+        {
+            this.blockMetaData = blockMetaData;
+            _blockRendererStrategy.SetMaterial(blockMetaData.Material);
+        }
 
         public virtual void SetData(BlockData blockData)
         {
             _blockData = blockData;
-            _blockRendererStrategy.SetMaterial(blockData.Material);
         }
 
         public virtual void SetPosition(Vector3 position)
@@ -25,18 +31,18 @@ namespace MineMiner
             transform.position = position;
         }
         
-        public virtual BlockData Data
+        public virtual BlockMetaData MetaData
         {
-            get { return _blockData; }
+            get { return blockMetaData; }
         }
 
         public virtual void Update()
         {
-            if(_blockData != _lastBlockData)
+            if(blockMetaData != _lastBlockMetaData)
             {
-                if (_blockData != null && _blockRendererStrategy != null)
+                if (blockMetaData != null && _blockRendererStrategy != null)
                 {
-                    _blockRendererStrategy.SetData(_blockData);
+                    _blockRendererStrategy.SetData(blockMetaData);
                 }
             }
         }

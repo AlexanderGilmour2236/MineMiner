@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6137d9cbe6de43745b14ea453bed9c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _blocksConfig: {fileID: 11400000, guid: 846e72bf4e5cafa48ba3feb0820746fc, type: 2}
   _defaultDestroyableBlockPrefab: {fileID: 2882669443729375978, guid: 4d4b56148cd939244b77977c34b92f81, type: 3}
   _droppedBlockPrefab: {fileID: 7532558708488384299, guid: ebffef2e505e3824aa362125626a7a63, type: 3}
   _droppedSpriteBlockPrefab: {fileID: 40120811660047399, guid: 6232dcd3be115d143965051729e1fefd, type: 3}
-  _defaultBlockData: {fileID: 11400000, guid: 71de74e7831fdd04dbafb5ae443385b2, type: 2}
+  defaultBlockMetaData: {fileID: 0}

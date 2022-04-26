@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: coin_dropped_block
   m_EditorClassIdentifier: 
   BlockType: 2
-  Id: 2
+  Id: 5
   Sprite: {fileID: 21300000, guid: c4afa92fdde328e4c9b08414de00d704, type: 3}
   Material: {fileID: 0}
   DroppedMinCount: 3

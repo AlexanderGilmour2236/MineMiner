@@ -72,10 +72,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f1de02cbda44596b5cc04b3dbb99e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _blockData: {fileID: 0}
+  blockMetaData: {fileID: 0}
   _blockRendererStrategy: {fileID: 1193748659121583886}
   _blockMovementStrategy: {fileID: 0}
-  _destroyableBlockData: {fileID: 0}
+  destroyableBlockMetaData: {fileID: 0}
 --- !u!1001 &840129352854778279
 PrefabInstance:
   m_ObjectHideFlags: 0

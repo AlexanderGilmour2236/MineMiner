@@ -14,6 +14,7 @@ namespace MineMiner
             Container.Bind(typeof(App), typeof(ITickable)).To<MapEditorApp>().AsSingle().NonLazy();
             
             Container.Bind<BlocksFactory>().FromInstance(_blocksFactory);
+            Container.Bind<BlocksController>().AsSingle().NonLazy();
             Container.Bind<MapEditorSceneAccessor>().FromInstance(_mapEditorSceneAccessor);
             Container.Bind<MapEditorCameraController>().FromInstance(_mapEditorCameraController);
             Container.Bind<MapEditorNavigator>().AsSingle().NonLazy();

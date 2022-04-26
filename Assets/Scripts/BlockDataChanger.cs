@@ -14,8 +14,8 @@ namespace DefaultNamespace
             transform.GetComponentsInChildren(transform, _currentBlocks);
             foreach (DestroyableBlockView blockView in _currentBlocks)
             {
-                BlockData blockData = blockView.Data;
-                blockView.gameObject.AddComponent<DestroyableBlockView>().SetData(blockData);
+                BlockMetaData blockMetaData = blockView.MetaData;
+                blockView.gameObject.AddComponent<DestroyableBlockView>().SetMetaData(blockMetaData);
                 DestroyImmediate(blockView);
             }
         }

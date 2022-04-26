@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: stone_block
   m_EditorClassIdentifier: 
   BlockType: 1
-  Id: 1
+  Id: 4
   Sprite: {fileID: 0}
   Material: {fileID: 2100000, guid: ffe667efea83eea42b3e6760025719ed, type: 2}
   Strength: 1
-  DroppedBlockData: {fileID: 0}
+  droppedBlockMetaData: {fileID: 0}

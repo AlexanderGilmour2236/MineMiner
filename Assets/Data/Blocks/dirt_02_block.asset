@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: dirt_02_block
   m_EditorClassIdentifier: 
   BlockType: 1
-  Id: 0
+  Id: 2
   Sprite: {fileID: 0}
   Material: {fileID: 2100000, guid: 40cb340d2ca85264b83dbae5ec006671, type: 2}
   Strength: 1
-  DroppedBlockData: {fileID: 0}
+  droppedBlockMetaData: {fileID: 0}

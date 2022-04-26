@@ -2,7 +2,10 @@ namespace MineMiner
 {
     public enum BlockId
     {
-        Dirt,
+        Dirt00,
+        Dirt01,
+        Dirt02,
+        Dirt03,
         Stone,
         Golds
     }

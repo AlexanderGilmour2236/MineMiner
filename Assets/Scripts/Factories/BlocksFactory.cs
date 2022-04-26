@@ -6,11 +6,13 @@ namespace MineMiner
 {
     public class BlocksFactory : MonoBehaviour
     {
+        [SerializeField] private BlocksConfig _blocksConfig;
         [SerializeField] private DestroyableBlockView _defaultDestroyableBlockPrefab;
         
         [SerializeField] private BlockView _droppedBlockPrefab;
         [SerializeField] private SpiteBlockView _droppedSpriteBlockPrefab;
-        [SerializeField] private DestroyableBlockData _defaultBlockData;
+        [SerializeField] private DestroyableBlockMetaData defaultBlockMetaData;
+        
         
         private float? _cachedBlockSize;
 
@@ -20,26 +22,28 @@ namespace MineMiner
             {
                 if (_cachedBlockSize == null)
                 {
-                    _cachedBlockSize = _defaultDestroyableBlockPrefab.gameObject.GetComponent<BoxCollider>().bounds.size.x;
+                    BoxCollider boxCollider =  Instantiate(_defaultDestroyableBlockPrefab.gameObject.GetComponent<BoxCollider>());
+                    _cachedBlockSize = boxCollider.bounds.size.x;
+                    Destroy(boxCollider.gameObject);
                 }
                 return _cachedBlockSize.Value;
             }
         }
 
-        public BlockView[] GetDroppedBlockViews(DestroyableBlockData blockData)
+        public BlockView[] GetDroppedBlockViews(DestroyableBlockMetaData blockMetaData)
         {
             int droppedBlocksCount = 1;
-            DroppedBlockData droppedBlockData = blockData.DroppedBlockData;
-            if (droppedBlockData != null)
+            DroppedBlockMetaData droppedBlockMetaData = blockMetaData.droppedBlockMetaData;
+            if (droppedBlockMetaData != null)
             {
-                droppedBlocksCount = Random.Range(droppedBlockData.DroppedMinCount, droppedBlockData.DroppedMaxCount);
+                droppedBlocksCount = Random.Range(droppedBlockMetaData.DroppedMinCount, droppedBlockMetaData.DroppedMaxCount);
             }
             
             BlockView[] droppedBlocks = new BlockView[droppedBlocksCount];
             for (int i = 0; i < droppedBlocksCount; i++)
             {
-                BlockView blockView = Instantiate(GetDroppedBlockPrefab(blockData));
-                blockView.SetData(blockData);
+                BlockView blockView = Instantiate(GetDroppedBlockPrefab(blockMetaData));
+                blockView.SetMetaData(blockMetaData);
                 droppedBlocks[i] = blockView;
             }
             
@@ -47,19 +51,19 @@ namespace MineMiner
            
         }
 
-        private BlockView GetDroppedBlockPrefab(DestroyableBlockData blockData)
+        private BlockView GetDroppedBlockPrefab(DestroyableBlockMetaData blockMetaData)
         {
-            if (blockData.DroppedBlockData == null)
+            if (blockMetaData.droppedBlockMetaData == null)
             {
                 return _droppedBlockPrefab;
             }
 
-            return GetDroppedBlockPrefab(blockData.DroppedBlockData);
+            return GetDroppedBlockPrefab(blockMetaData.droppedBlockMetaData);
         }
 
-        private BlockView GetDroppedBlockPrefab(BlockData blockDataDroppedBlockData)
+        private BlockView GetDroppedBlockPrefab(BlockMetaData blockMetaDataDroppedBlockMetaData)
         {
-            BlockType blockType = blockDataDroppedBlockData.BlockType;
+            BlockType blockType = blockMetaDataDroppedBlockMetaData.BlockType;
             switch (blockType)
             {
                 case BlockType.DefaultBlock:
@@ -71,26 +75,34 @@ namespace MineMiner
             }
         }
 
-        public DestroyableBlockView GetDestroyableBlockView(DestroyableBlockData blockData = null, Transform parent = null)
+        public DestroyableBlockView GetDestroyableBlockView(Vector3Int position, DestroyableBlockMetaData blockMetaData = null, Transform parent = null)
         {
             if (parent == null)
             {
                 parent = transform;
             }
 
-            if (blockData == null)
+            if (blockMetaData == null)
             {
-                blockData = _defaultBlockData;
+                blockMetaData = defaultBlockMetaData;
             }
 
-            DestroyableBlockView blockView = Instantiate(GetDestroyableBlockPrefab(blockData), parent);
-            blockView.SetData(blockData);
+            DestroyableBlockView blockView = Instantiate(GetDestroyableBlockPrefab(blockMetaData), parent);
+            blockView.SetMetaData(blockMetaData);
+            blockView.SetData(new DestroyableBlockData(blockMetaData, blockView, position));
             return blockView;
         }
 
-        private DestroyableBlockView GetDestroyableBlockPrefab(DestroyableBlockData blockData)
+        private DestroyableBlockView GetDestroyableBlockPrefab(DestroyableBlockMetaData blockMetaData)
         {
             return _defaultDestroyableBlockPrefab;
+        }
+        
+        public DestroyableBlockMetaData DefaultBlockMetaData => defaultBlockMetaData;
+
+        public BlockMetaData GetBlockMetaData(BlockId blockId)
+        {
+            return _blocksConfig.GetBlockMetaData(blockId);
         }
     }
 }

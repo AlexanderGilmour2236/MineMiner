@@ -2,15 +2,54 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b86d8612-bceb-47a4-8a05-d7bc538cb929" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CursorLocker.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/CursorLocker.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/SaveLoadController.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/SaveLoadController.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Data/BlockDataProvider.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Data/BlockDataProvider.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Data/BlockMetaData.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Data/BlockMetaData.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Data/BlocksConfig.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Data/BlocksConfig.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Data/DestroyableBlockMetaData.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Data/DestroyableBlockMetaData.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Data/LevelData.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Data/LevelData.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enums/BlockDataType.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Enums/BlockDataType.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/IJSONObject.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/IJsonObject.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/SimpleJSON/JSONKeys.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/SimpleJSON/JSONKeys.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/TagManager.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/TagManager.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MineMiner/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MineMiner/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/Blocks/coin_rock_block.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Blocks/coin_rock_block.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_01_block.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_01_block.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_02_block.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_02_block.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_03_block.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_03_block.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/Blocks/stone_block.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Blocks/stone_block.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/DroppedBlocks/coin_dropped_block.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/DroppedBlocks/coin_dropped_block.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/BlockView.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/BlockView.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Factories/BlocksFactory.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Factories/BlocksFactory.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MapEditor.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MapEditor.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/AroundCameraMovementStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/AroundCameraMovementStrategy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/FreeCameraMovementStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/FreeCameraMovementStrategy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/ICameraMovementStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/ICameraMovementStrategy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/MapEditorCameraController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/MapEditorCameraController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/InputManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BlockDataChanger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BlockDataChanger.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/BlocksController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/BlocksController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/MineSceneNavigator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/MineSceneNavigator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CursorLocker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CursorLocker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/BlockData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/BlockData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/BlockData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/BlockData.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/DestroyableBlockData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/DestroyableBlockData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/DestroyableBlockData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/DestroyableBlockData.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/DroppedBlockData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/DroppedBlockMetaData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/DroppedBlockData.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/DroppedBlockMetaData.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enums/BlockId.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enums/BlockId.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Factories/BlocksFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Factories/BlocksFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Installers/MapEditorSceneInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Installers/MapEditorSceneInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MapEditor/MapEditorNavigator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MapEditor/MapEditorNavigator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/MapEditorUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MapEditorUI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Views/BlockStrategies/BlockRendererStrategy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Views/BlockStrategies/BlockRendererStrategy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Views/BlockView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Views/BlockView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Views/DestroyableBlockView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Views/DestroyableBlockView.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,10 +96,12 @@
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/BlocksController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/LevelCameraController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/SceneAccessors/MineSceneAccessor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/BlockData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/DroppedBlockData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/DestroyableBlockData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f8918d0cc5fc41a1baba01b207a4c01617400/8e/0747f6aa/Collider.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/BlockMetaData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/DroppedBlockMetaData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/DestroyableBlockMetaData.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Internal/Assert.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Misc/FindAssetsOfType.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Misc/MonoPool.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/App.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/49f4e7e791cc4fffacd88f729e2b1e4c128000/51/8f63834c/Debug.cs" root0="SKIP_HIGHLIGHTING" />
@@ -240,7 +281,7 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -254,10 +295,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="15100">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" />
+      <option name="pid" value="15100" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -291,6 +332,11 @@
       <workItem from="1649692099129" duration="4156000" />
       <workItem from="1650208901068" duration="14954000" />
       <workItem from="1650238448315" duration="3319000" />
+      <workItem from="1650317592728" duration="2341000" />
+      <workItem from="1650702897775" duration="3980000" />
+      <workItem from="1650726020795" duration="606000" />
+      <workItem from="1650739269778" duration="5002000" />
+      <workItem from="1651007272912" duration="6553000" />
     </task>
     <servers />
   </component>
