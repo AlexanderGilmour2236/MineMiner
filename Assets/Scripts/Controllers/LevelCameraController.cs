@@ -10,11 +10,13 @@ namespace MineMiner
         [SerializeField] private Camera _camera;
         [SerializeField] private Transform _cameraPivot;
         [SerializeField] private Vector3 _cameraStartOffset;
+        [SerializeField] private float _cameraMoveSpeed = 0.1f;
 
         private ICameraMovementStrategy _aroundCameraMovementStrategy;
-        
+
         private Vector3 _mouseDownPosition = Vector3.zero;
         private Vector2 _mouseDragPosition = Vector2.zero;
+        private Vector3 _cameraPivotTargetPosition;
 
         public void Init()
         {
@@ -26,8 +28,11 @@ namespace MineMiner
             float xRotation = (_mouseDragPosition.y - _mouseDownPosition.y) * _mouseSensitivity;
             float yRotation = (_mouseDragPosition.x - _mouseDownPosition.x) * _mouseSensitivity;
 
-            _aroundCameraMovementStrategy.Rotate(new Vector3(-xRotation, yRotation));
+            Vector3 rotation = new Vector3(-xRotation, yRotation);
 
+            _aroundCameraMovementStrategy.Rotate(rotation);
+
+            _cameraPivot.position = Vector3.Lerp(_cameraPivot.position, _cameraPivotTargetPosition, _cameraMoveSpeed);
             _mouseDownPosition = Vector3.Lerp(_mouseDownPosition, _mouseDragPosition, 0.05f);
         }
 
@@ -49,6 +54,11 @@ namespace MineMiner
         {
             _mouseDownPosition = Input.mousePosition;
             _mouseDragPosition = _mouseDownPosition;
+        }
+
+        public void setPivotPosition(Vector3 position)
+        {
+            _cameraPivotTargetPosition = position;
         }
     }
 }

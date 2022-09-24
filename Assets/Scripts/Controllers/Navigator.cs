@@ -33,7 +33,7 @@ namespace MineMiner
         {
         }
 
-        public Navigator ParentNavigator
+        public Navigator parentNavigator
         {
             get { return _parentNavigator; }
         }

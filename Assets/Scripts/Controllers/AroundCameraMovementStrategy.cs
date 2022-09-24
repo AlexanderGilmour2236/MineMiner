@@ -18,6 +18,7 @@ namespace MineMiner
             _cameraStartOffset = cameraStartOffset;
             
             _camera.transform.SetParent(_cameraPivot, true);
+            _camera.transform.localPosition = _cameraStartOffset;
         }
 
         public void SetTargetPoint(Transform point)
@@ -43,6 +44,7 @@ namespace MineMiner
             angles.x = angles.x.ClampAngle(-40, 40);
             _cameraPivot.transform.localEulerAngles = angles;
         }
+        
         
         public void Rotate(Quaternion rotation)
         {

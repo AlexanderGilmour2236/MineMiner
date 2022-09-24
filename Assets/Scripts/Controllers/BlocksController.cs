@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -24,10 +25,12 @@ namespace MineMiner
         private List<BlockData> _currentBlocksData = new List<BlockData>();
         private Vector3 _centerPoint;
         private DestroyableBlockView _currentHittingBlock;
+        private Transform _levelParent;
 
         public void Init(CracksBlock cracksBlockPrefab, Transform levelCenterTransform, Transform levelParent)
         {
             _levelCenterTransform = levelCenterTransform;
+            _levelParent = levelParent;
             if (cracksBlockPrefab != null)
             {
                 _cracksBlocksPool = new MonoPool<CracksBlock>(levelParent, cracksBlockPrefab);
@@ -61,11 +64,24 @@ namespace MineMiner
             
             foreach (DestroyableBlockView block in _currentBlocks)
             {
-                SubscribeBlockView(block);
+                subscribeBlockView(block);
             }
             
             _centerPoint = FindCenterPoint(_currentBlocks);
             _levelCenterTransform.position = _centerPoint;
+        }
+        
+        public void SetBlocks(DestroyableBlockView[] getPlayerLevelBlocks)
+        {
+            _currentBlocks.Clear();
+            _currentBlocks.AddRange(getPlayerLevelBlocks);
+            
+            foreach (DestroyableBlockView block in getPlayerLevelBlocks)
+            {
+                subscribeBlockView(block);
+            }
+            
+
         }
 
         private void OnHit(DestroyableBlockView blockView)
@@ -80,7 +96,6 @@ namespace MineMiner
             _currentBlocks.Remove(block);
             _currentBlocksData.Remove(block.DestroyableBlockData);
             
-            _centerPoint = FindCenterPoint(_currentBlocks);
             if (_cracksBlocksPool != null)
             {
                 _cracksBlocksPool.ReleaseObject(_blockToCracks[block]);
@@ -153,17 +168,24 @@ namespace MineMiner
         public DestroyableBlockView CreateBlock(Vector3Int position, DestroyableBlockMetaData destroyableBlockMetaData = null)
         {
             DestroyableBlockView blockView =
-                _blocksFactory.GetDestroyableBlockView(position, destroyableBlockMetaData, _levelCenterTransform);
+                _blocksFactory.GetDestroyableBlockView(position, destroyableBlockMetaData, _levelParent);
             
             blockView.SetPosition((Vector3)position * _blocksFactory.BlockSize);
             _currentBlocks.Add(blockView);
             _currentBlocksData.Add(blockView.DestroyableBlockData);
             
-            SubscribeBlockView(blockView);
+            subscribeBlockView(blockView);
+            
             return blockView;
         }
 
-        private void SubscribeBlockView(DestroyableBlockView blockView)
+        public void SetCenterPoint()
+        {
+            _centerPoint = FindCenterPoint(_currentBlocks);
+            _levelCenterTransform.position = _centerPoint;
+        }
+        
+        private void subscribeBlockView(DestroyableBlockView blockView)
         {
             blockView.onBlockDestroy += OnBlockDestroy;
             blockView.onHit += OnHit;
@@ -178,5 +200,7 @@ namespace MineMiner
         {
             OnBlockDestroy(blockToDestroy);
         }
+
+
     }
 }

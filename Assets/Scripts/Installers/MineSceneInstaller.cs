@@ -12,7 +12,8 @@ namespace MineMiner
 
         public override void InstallBindings()
         {
-            Container.Bind<App>().To<GameApp>().AsSingle().NonLazy();
+//            Container.Bind<App>().To<MineMinerApp>().AsSingle().NonLazy();
+            Container.BindInterfacesTo<MineMinerApp>().AsSingle().NonLazy();
 
             Container.Bind<MineSceneNavigator>().AsSingle().NonLazy();
             Container.Bind<LevelCameraController>().FromInstance(_levelCameraController);

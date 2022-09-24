@@ -9,8 +9,8 @@ namespace MineMiner
         
         public void SetNormalizedValue(float value)
         {
-            value = Mathf.Clamp(value, 0,1);
-            int index = (int)(_sortedMaterials.Length * value);
+            value = Mathf.Clamp(value, 0, 1);
+            int index = (int)((_sortedMaterials.Length - 1) * value);
             _meshRenderer.material = _sortedMaterials[index];
         }
     }

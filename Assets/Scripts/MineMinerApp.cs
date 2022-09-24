@@ -2,7 +2,7 @@ using Zenject;
 
 namespace MineMiner
 {
-    public class GameApp : App
+    public class MineMinerApp : App
     {
         [Inject] private MineSceneNavigator _mineSceneNavigator;
         
