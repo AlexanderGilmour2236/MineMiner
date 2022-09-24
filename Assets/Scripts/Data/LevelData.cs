@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using DefaultNamespace;
 using SimpleJSON;
+using UnityEngine;
 
 namespace MineMiner
 {
@@ -10,16 +11,20 @@ namespace MineMiner
         
         public LevelData(JSONNode jsonNode)
         {
+            Debug.Log("nodeConstructor");
             BlockDataProvider blockDataProvider = new BlockDataProvider();
 
             foreach (JSONNode blockDataNode in jsonNode[JSONKeys.LevelData].AsArray)
             {
+                Debug.Log(blockDataNode[JSONKeys.BlockID].ToString());
                 _blockDatas.Add(blockDataProvider.GetBlockData(blockDataNode));
             }
         }
 
         public LevelData(List<BlockData> blockDatas)
         {
+            Debug.Log("Constructor");
+
             _blockDatas = blockDatas;
         }
 

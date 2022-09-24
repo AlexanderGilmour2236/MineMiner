@@ -361,6 +361,8 @@
         <e p="Resources" t="Include">
           <e p="Levels" t="Include">
             <e p="Level00.json" t="Include" />
+            <e p="Level01.json" t="Include" />
+            <e p="Level02.json" t="Include" />
           </e>
         </e>
         <e p="Scripts" t="Include">
@@ -370,6 +372,7 @@
           <e p="Controllers" t="Include">
             <e p="AroundCameraMovementStrategy.cs" t="Include" />
             <e p="BlocksController.cs" t="Include" />
+            <e p="CameraRaycastController.cs" t="Include" />
             <e p="FreeCameraMovementStrategy.cs" t="Include" />
             <e p="ICameraMovementStrategy.cs" t="Include" />
             <e p="LevelCameraController.cs" t="Include" />

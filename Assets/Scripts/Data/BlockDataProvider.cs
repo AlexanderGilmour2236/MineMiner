@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using SimpleJSON;
+using UnityEngine;
 
 namespace MineMiner
 {
@@ -15,7 +17,8 @@ namespace MineMiner
                 case BlockDataType.None:
                     return new BlockData(jsonNode);
                 case BlockDataType.Destroyable:
-                    return new DestroyableBlockData(jsonNode);
+                    Debug.Log(jsonNode[JSONKeys.BlockID].ToString());
+                    return new DestroyableBlockData(jsonNode, jsonNode[JSONKeys.BlockID].Value);
                 default:
                     throw new ArgumentOutOfRangeException();
             }

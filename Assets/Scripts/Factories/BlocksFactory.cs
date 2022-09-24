@@ -104,5 +104,10 @@ namespace MineMiner
         {
             return _blocksConfig.GetBlockMetaData(blockId);
         }
+
+        public DestroyableBlockMetaData[] GetAllBlocksData()
+        {
+            return _blocksConfig.DestroyableBlockMetaDatas.ToArray();
+        }
     }
 }

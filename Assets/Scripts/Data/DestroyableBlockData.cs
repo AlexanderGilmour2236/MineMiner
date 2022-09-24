@@ -1,3 +1,4 @@
+using System;
 using DefaultNamespace;
 using SimpleJSON;
 using UnityEngine;
@@ -15,11 +16,13 @@ namespace MineMiner
             _position = position;
         }
 
-        public DestroyableBlockData(JSONNode jsonNode) : base(null, null)
+        public DestroyableBlockData(JSONNode jsonNode, string blockID) : base(null, null)
         {
             _strengthLeft = jsonNode[JSONKeys.BlockStrength].AsFloat;
             _position = new Vector3Int(jsonNode[JSONKeys.X].AsInt, 
                 jsonNode[JSONKeys.Y].AsInt, jsonNode[JSONKeys.Z].AsInt);
+            
+            _blockId = Enum.Parse<BlockId>(blockID);
         }
 
         public bool Hit(float damage)

@@ -32,5 +32,10 @@ namespace MineMiner
         {
             _destroyableBlockMetaDatas = FindAssetsOfType.FindAssetsByType<DestroyableBlockMetaData>();
         }
+
+        public List<DestroyableBlockMetaData> DestroyableBlockMetaDatas
+        {
+            get { return _destroyableBlockMetaDatas; }
+        }
     }
 }

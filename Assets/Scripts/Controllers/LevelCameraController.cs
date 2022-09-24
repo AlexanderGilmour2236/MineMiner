@@ -60,5 +60,10 @@ namespace MineMiner
         {
             _cameraPivotTargetPosition = position;
         }
+        
+        public Camera Camera
+        {
+            get { return _camera; }
+        }
     }
 }

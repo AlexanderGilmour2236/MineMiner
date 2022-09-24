@@ -15,6 +15,6 @@ MonoBehaviour:
   BlockType: 1
   Id: 3
   Sprite: {fileID: 0}
-  Material: {fileID: 2100000, guid: 40cb340d2ca85264b83dbae5ec006671, type: 2}
+  Material: {fileID: 2100000, guid: 180dea4e0148ba244a3c6a1df581490d, type: 2}
   Strength: 1
   droppedBlockMetaData: {fileID: 0}

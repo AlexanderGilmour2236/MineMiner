@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ModestTree;
 using SimpleJSON;
 using UnityEditor;
 using UnityEngine;
@@ -17,21 +18,31 @@ namespace MineMiner
         private string _filePath;
         private MapEditorUI _mapEditorUI;
         private List<BlockView> _blocksList = new List<BlockView>();
-        private DestroyableBlockMetaData blockMetaData;
+        private DestroyableBlockView _currentSampleBlockView;
+        private DestroyableBlockMetaData _currentBlockMetaData;
+        private DestroyableBlockMetaData[] _allBlocksMetaData;
 
         public override void Go()
         {
             base.Go();
 
-            blockMetaData = _blocksFactory.DefaultBlockMetaData;
             _mapEditorUI = _mapEditorSceneAccessor.MapEditorUI;
             _saveLoadPath = $"{Application.dataPath}/Resources/Levels/";
             _mapEditorUI.NewLevelButton.onClick.AddListener(OnNewLevelButtonClick);
             _mapEditorUI.SaveLevelButton.onClick.AddListener(OnSaveLevel);
             _mapEditorUI.LoadLevelButton.onClick.AddListener(OnLoadLevelButtonClick);
             _blocksController.Init(null, _mapEditorSceneAccessor.LevelStartPoint, _mapEditorSceneAccessor.LevelStartPoint);
-            
+            _currentSampleBlockView = _mapEditorSceneAccessor.CurrentSampleBlockView;
+            _allBlocksMetaData = _blocksFactory.GetAllBlocksData();
+            setCurrentBlockData(_blocksFactory.DefaultBlockMetaData);
+
             InitControllers();
+        }
+
+        private void setCurrentBlockData(DestroyableBlockMetaData destroyableBlockMetaData)
+        {
+            _currentBlockMetaData = destroyableBlockMetaData;
+            _currentSampleBlockView.SetMetaData(destroyableBlockMetaData);
         }
 
         private void OnLoadLevelButtonClick()
@@ -79,6 +90,39 @@ namespace MineMiner
                     CreateBlockOnBlock(hitBlockView);
                 }
             }
+
+            if (Input.mouseScrollDelta.y > 0)
+            {
+                setPrevCurrentBlockData();
+            }
+            
+            if (Input.mouseScrollDelta.y < 0)
+            {
+                setNextCurrentBlockData();
+            }
+        }
+
+        private void setPrevCurrentBlockData()
+        {
+            int nextIndex = _allBlocksMetaData.IndexOf(_currentBlockMetaData) - 1;
+            if (nextIndex < 0)
+            {
+                nextIndex = _allBlocksMetaData.Length - 1;
+            }
+
+            _currentBlockMetaData = _allBlocksMetaData[nextIndex];
+            _currentSampleBlockView.SetMetaData(_currentBlockMetaData);
+        }
+
+        private void setNextCurrentBlockData()
+        {
+            int nextIndex = _allBlocksMetaData.IndexOf(_currentBlockMetaData) + 1;
+            if (nextIndex >= _allBlocksMetaData.Length)
+            {
+                nextIndex = 0;
+            }
+            _currentBlockMetaData = _allBlocksMetaData[nextIndex];
+            _currentSampleBlockView.SetMetaData(_currentBlockMetaData);
         }
 
         private void OnNewLevelButtonClick()
@@ -145,10 +189,10 @@ namespace MineMiner
             RaycastHit? raycastHit = GetCameraRayHit();
             Vector3Int newBlockPosition = hitBlockView.DestroyableBlockData.Position + new Vector3Int((int)raycastHit.Value.normal.x, (int)raycastHit.Value.normal.y, (int)raycastHit.Value.normal.z);
 
-            CreateBlock(newBlockPosition);
+            CreateBlock(newBlockPosition, _currentBlockMetaData);
         }
 
-        private void CreateBlock(Vector3Int newBlockPosition)
+        private void CreateBlock(Vector3Int newBlockPosition, DestroyableBlockMetaData blockMetaData)
         {
             DestroyableBlockView newBlockView = _blocksController.CreateBlock(newBlockPosition, blockMetaData);
             _blocksList.Add(newBlockView);
@@ -159,11 +203,12 @@ namespace MineMiner
             LevelData levelData = SaveLoadController.LoadObject(filePath, (json) => new LevelData(json));
             foreach (BlockData blockData in levelData.BlockDatas)
             {
+                Debug.Log(blockData.BlockId);
                 blockData.BlockMetaData = _blocksFactory.GetBlockMetaData(blockData.BlockId); 
                 if (blockData.BlockDataType == BlockDataType.Destroyable)
                 {
                     DestroyableBlockData destroyableBlockData = (DestroyableBlockData) blockData;
-                    CreateBlock(destroyableBlockData.Position);
+                    CreateBlock(destroyableBlockData.Position, (DestroyableBlockMetaData)destroyableBlockData.BlockMetaData);
                 }
             }
         }

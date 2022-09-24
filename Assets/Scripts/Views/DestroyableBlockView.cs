@@ -9,7 +9,7 @@ namespace MineMiner
     {
         [SerializeField] private DestroyableBlockMetaData destroyableBlockMetaData;
         
-        private bool _isPointerDown;
+//        private bool _isPointerDown;
         private DestroyableBlockData _destroyableBlockData;
 
         public event Action<DestroyableBlockView> onHit;
@@ -23,15 +23,15 @@ namespace MineMiner
         public override void Update()
         {
             base.Update();
-            if (_isPointerDown)
-            {
-                onHit?.Invoke(this);
-            }
-
-            if (Input.GetMouseButtonUp(0))
-            {
-                _isPointerDown = false;
-            }
+//            if (_isPointerDown)
+//            {
+//                onHit?.Invoke(this);
+//            }
+//
+//            if (Input.GetMouseButtonUp(0))
+//            {
+//                _isPointerDown = false;
+//            }
         }
 
         public override void SetData(BlockData blockData)
@@ -46,6 +46,7 @@ namespace MineMiner
             destroyableBlockMetaData = (DestroyableBlockMetaData)blockMetaData;
         }
 
+        // TODO: get this 'return true' shit out of here you lame fat fuck
         /// <summary>
         /// Applies damage to block, returns true if block destroyed
         /// </summary>
@@ -70,7 +71,7 @@ namespace MineMiner
         public void UndoHit()
         {
             print("UndoHit");
-            _isPointerDown = false;
+//            _isPointerDown = false;
         }
 
         public void DestroyBlock()
@@ -83,18 +84,18 @@ namespace MineMiner
             return StrengthLeft / destroyableBlockMetaData.Strength;
         }
 
-        private void OnMouseOver()
-        {
-            if (Input.GetMouseButton(0))
-            {
-                _isPointerDown = true;
-            }
-        }
-
-        private void OnMouseExit()
-        {
-            _isPointerDown = false;
-        }
+//        private void OnMouseOver()
+//        {
+//            if (Input.GetMouseButton(0))
+//            {
+//                _isPointerDown = true;
+//            }
+//        }
+//
+//        private void OnMouseExit()
+//        {
+//            _isPointerDown = false;
+//        }
 
         public float StrengthLeft
         {

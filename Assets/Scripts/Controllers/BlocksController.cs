@@ -80,11 +80,9 @@ namespace MineMiner
             {
                 subscribeBlockView(block);
             }
-            
-
         }
 
-        private void OnHit(DestroyableBlockView blockView)
+        public void OnHit(DestroyableBlockView blockView)
         {
             OnBlockHit(blockView);
             onBlockHit?.Invoke(blockView);

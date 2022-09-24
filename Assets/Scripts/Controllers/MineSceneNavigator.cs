@@ -13,8 +13,15 @@ namespace MineMiner
         [Inject] private MineSceneAccessor _mineSceneAccessor;
         [Inject] private BlocksFactory _blocksFactory;
         
+        private CameraRaycastController _cameraRaycastController;
         private bool _isNaviatorInitiated;
 
+        [Inject]
+        public MineSceneNavigator(LevelCameraController levelCameraController)
+        {
+            _cameraRaycastController = new CameraRaycastController(levelCameraController.Camera, 1 << LayerMask.NameToLayer(TagManager.DestroyableBlocksLayer));
+        }
+        
         public override void Go()
         {
             base.Go();
@@ -28,12 +35,14 @@ namespace MineMiner
                 return;
             }
             
+            _cameraRaycastController.Tick();
             _blocksController.Tick();
             _levelCameraController.Tick();
         }
 
         private void InitControllers()
         {
+            _cameraRaycastController.onHit += HitBlockByRaycast;
             _blocksController.Init(_mineSceneAccessor.CracksBlockPrefab, _mineSceneAccessor.LevelCenterTransform, _mineSceneAccessor.LevelParent);
             _blocksController.onBlockDestroy += OnOnBlockDestroy;
             _blocksController.onBlockHit += OnBlockHit;
@@ -43,9 +52,15 @@ namespace MineMiner
             _isNaviatorInitiated = true;
         }
 
+        private void HitBlockByRaycast(RaycastHit raycastHit)
+        {
+            DestroyableBlockView destroyableBlockView = raycastHit.collider.GetComponent<DestroyableBlockView>();
+            _blocksController.OnHit(destroyableBlockView);
+        }
+
         private void CreateLevelBlocks()
         {
-            LevelData levelData = SaveLoadController.LoadObject("C:/UnityProjects/MineMiner/MineMiner/Assets/Resources/Levels/Level00.json", (json) => new LevelData(json));
+            LevelData levelData = SaveLoadController.LoadObject("C:/UnityProjects/MineMiner/MineMiner/Assets/Resources/Levels/Level01.json", (json) => new LevelData(json));
             
             int blockIndex = 0;
             foreach (BlockData blockData in levelData.BlockDatas)
