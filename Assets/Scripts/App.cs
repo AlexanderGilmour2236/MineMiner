@@ -1,3 +1,4 @@
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace MineMiner
@@ -35,6 +36,12 @@ namespace MineMiner
         public void SetActiveNavigator(Navigator navigator)
         {
             _activeNavigator = navigator;
+        }
+
+        public static void RestartApp()
+        {
+            _instance = null;
+            SceneManager.LoadScene("MainScene");
         }
     }
 }

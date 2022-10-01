@@ -22,7 +22,7 @@ namespace MineMiner
             _position = new Vector3Int(jsonNode[JSONKeys.X].AsInt, 
                 jsonNode[JSONKeys.Y].AsInt, jsonNode[JSONKeys.Z].AsInt);
             
-            _blockId = Enum.Parse<BlockId>(blockID);
+            _blockId = (BlockId) Enum.Parse(typeof(BlockId), blockID);
         }
 
         public bool Hit(float damage)

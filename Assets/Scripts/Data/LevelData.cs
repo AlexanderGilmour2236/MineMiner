@@ -13,8 +13,9 @@ namespace MineMiner
         {
             Debug.Log("nodeConstructor");
             BlockDataProvider blockDataProvider = new BlockDataProvider();
-
-            foreach (JSONNode blockDataNode in jsonNode[JSONKeys.LevelData].AsArray)
+            
+            JSONArray blockDataNodes = jsonNode[JSONKeys.LevelData].AsArray;
+            foreach (JSONNode blockDataNode in blockDataNodes)
             {
                 Debug.Log(blockDataNode[JSONKeys.BlockID].ToString());
                 _blockDatas.Add(blockDataProvider.GetBlockData(blockDataNode));

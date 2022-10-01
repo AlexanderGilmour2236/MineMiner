@@ -19,6 +19,10 @@ namespace MineMiner
         
         public void Tick()
         {
+            if (!Input.GetMouseButton(0)){
+                return;
+            }
+            
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 500, _layerMask))
