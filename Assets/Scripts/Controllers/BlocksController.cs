@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Zenject;
+using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 namespace MineMiner
@@ -21,7 +22,7 @@ namespace MineMiner
         private MonoPool<CracksBlock> _cracksBlocksPool;
         private Dictionary<BlockView, CracksBlock> _blockToCracks = new Dictionary<BlockView, CracksBlock>();
 
-        private List<DestroyableBlockView> _currentBlocks = new List<DestroyableBlockView>();
+        private List<DestroyableBlockView> _currentCurrentBlocks = new List<DestroyableBlockView>();
         private List<BlockData> _currentBlocksData = new List<BlockData>();
         private Vector3 _centerPoint;
         private DestroyableBlockView _currentHittingBlock;
@@ -60,21 +61,21 @@ namespace MineMiner
 
         public void SetAllBlocksFromLevelGameObjects(Transform parent)
         {
-            parent.GetComponentsInChildren(parent, _currentBlocks);
+            parent.GetComponentsInChildren(parent, _currentCurrentBlocks);
             
-            foreach (DestroyableBlockView block in _currentBlocks)
+            foreach (DestroyableBlockView block in _currentCurrentBlocks)
             {
                 subscribeBlockView(block);
             }
             
-            _centerPoint = FindCenterPoint(_currentBlocks);
+            _centerPoint = FindCenterPoint(_currentCurrentBlocks);
             _levelCenterTransform.position = _centerPoint;
         }
         
         public void SetBlocks(DestroyableBlockView[] getPlayerLevelBlocks)
         {
-            _currentBlocks.Clear();
-            _currentBlocks.AddRange(getPlayerLevelBlocks);
+            _currentCurrentBlocks.Clear();
+            _currentCurrentBlocks.AddRange(getPlayerLevelBlocks);
             
             foreach (DestroyableBlockView block in getPlayerLevelBlocks)
             {
@@ -90,18 +91,24 @@ namespace MineMiner
 
         private void OnBlockDestroy(DestroyableBlockView block)
         {
+            DestroyBlock(block);
+            CreateDroppedBlock(block);
+        }
+
+        public void DestroyBlock(DestroyableBlockView block)
+        {
             onBlockDestroy?.Invoke(block);
-            _currentBlocks.Remove(block);
+            _currentCurrentBlocks.Remove(block);
             _currentBlocksData.Remove(block.DestroyableBlockData);
-            
+
             if (_cracksBlocksPool != null)
             {
                 _cracksBlocksPool.ReleaseObject(_blockToCracks[block]);
                 _blockToCracks.Remove(block);
             }
+
             block.DestroyBlock();
             _currentHittingBlock = null;
-            CreateDroppedBlock(block);
         }
 
         private void CreateDroppedBlock(DestroyableBlockView block)
@@ -163,13 +170,21 @@ namespace MineMiner
             get { return _levelCenterTransform; }
         }
 
+        public List<DestroyableBlockView> CurrentBlocks
+        {
+            get
+            {
+                return _currentCurrentBlocks;
+            }
+        }
+
         public DestroyableBlockView CreateBlock(Vector3Int position, DestroyableBlockMetaData destroyableBlockMetaData = null)
         {
             DestroyableBlockView blockView =
                 _blocksFactory.GetDestroyableBlockView(position, destroyableBlockMetaData, _levelParent);
             
             blockView.SetPosition((Vector3)position * _blocksFactory.BlockSize);
-            _currentBlocks.Add(blockView);
+            _currentCurrentBlocks.Add(blockView);
             _currentBlocksData.Add(blockView.DestroyableBlockData);
             
             subscribeBlockView(blockView);
@@ -179,7 +194,7 @@ namespace MineMiner
 
         public void SetCenterPoint()
         {
-            _centerPoint = FindCenterPoint(_currentBlocks);
+            _centerPoint = FindCenterPoint(_currentCurrentBlocks);
             _levelCenterTransform.position = _centerPoint;
         }
         
@@ -194,11 +209,13 @@ namespace MineMiner
             return new LevelData(_currentBlocksData);
         }
 
-        public void DestroyBLock(DestroyableBlockView blockToDestroy)
+        public void Clear()
         {
-            OnBlockDestroy(blockToDestroy);
+            DestroyableBlockView[] destroyableBlockViews = _currentCurrentBlocks.ToArray();
+            foreach (DestroyableBlockView destroyableBlockView in destroyableBlockViews)
+            {
+                DestroyBlock(destroyableBlockView);
+            }
         }
-
-
     }
 }

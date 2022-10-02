@@ -13,6 +13,7 @@ namespace MineMiner
         [Inject] private MapEditorSceneAccessor _mapEditorSceneAccessor;
         [Inject] private MapEditorCameraController _mapEditorCameraController;
         [Inject] private BlocksController _blocksController;
+        [Inject] private LevelGenerator _levelGenerator;
         
         private string _saveLoadPath;
         private string _filePath;
@@ -31,12 +32,19 @@ namespace MineMiner
             _mapEditorUI.NewLevelButton.onClick.AddListener(OnNewLevelButtonClick);
             _mapEditorUI.SaveLevelButton.onClick.AddListener(OnSaveLevel);
             _mapEditorUI.LoadLevelButton.onClick.AddListener(OnLoadLevelButtonClick);
+            _mapEditorUI.GenerateLevelButton.onClick.AddListener(OnGenerateButtonClick);
             _blocksController.Init(null, _mapEditorSceneAccessor.LevelStartPoint, _mapEditorSceneAccessor.LevelStartPoint);
             _currentSampleBlockView = _mapEditorSceneAccessor.CurrentSampleBlockView;
             _allBlocksMetaData = _blocksFactory.GetAllBlocksData();
             setCurrentBlockData(_blocksFactory.DefaultBlockMetaData);
 
             InitControllers();
+        }
+
+        private void OnGenerateButtonClick()
+        {
+            _levelGenerator.SetNoiseRenderer(_mapEditorSceneAccessor.NoizeImage);
+            StartEditingLevel(_filePath, StartEditingLevelMode.GENERATE_LEVEL);
         }
 
         private void setCurrentBlockData(DestroyableBlockMetaData destroyableBlockMetaData)
@@ -48,7 +56,7 @@ namespace MineMiner
         private void OnLoadLevelButtonClick()
         {
             _filePath = EditorUtility.OpenFilePanel("Open level for editing", _saveLoadPath, "json");
-            StartEditingLevel(_filePath, false);
+            StartEditingLevel(_filePath, StartEditingLevelMode.LOAD_LEVEL);
         }
 
         private void OnSaveLevel()
@@ -129,19 +137,32 @@ namespace MineMiner
         {
             _filePath = EditorUtility.SaveFilePanel("Create file for a new Level", 
                 _saveLoadPath, "Level00.json", ".json");
-            StartEditingLevel(_filePath, true);
+            StartEditingLevel(_filePath, StartEditingLevelMode.NEW_LEVEL);
         }
 
-        private void StartEditingLevel(string filePath, bool newLevel)
+        private void StartEditingLevel(string filePath, StartEditingLevelMode startEditingLevelMode)
         {
-            if (newLevel)
+            ClearLastLevel();
+            switch (startEditingLevelMode)
             {
-                CreateFirstBlock();
+                case StartEditingLevelMode.GENERATE_LEVEL:
+                    _levelGenerator.GenerateLevel(Random.Range(3, 6),Random.Range(5,10), Random.Range(3, 7));
+                    
+                    // _levelGenerator.GenerateLevel(20,20, 20);
+                    _blocksList.AddRange(_blocksController.CurrentBlocks);
+                    break;
+                case StartEditingLevelMode.NEW_LEVEL:
+                    CreateFirstBlock();
+                    break;
+                case StartEditingLevelMode.LOAD_LEVEL:
+                    LoadLevel(filePath);
+                    break;
             }
-            else
-            {
-                LoadLevel(filePath);
-            }
+        }
+
+        private void ClearLastLevel()
+        {
+            _blocksController.Clear();
         }
 
         private void CreateFirstBlock()
@@ -179,7 +200,7 @@ namespace MineMiner
         {
             if (_blocksList.Count > 1)
             {
-                _blocksController.DestroyBLock(blockToDestroy);
+                _blocksController.DestroyBlock(blockToDestroy);
                 _blocksList.Remove(blockToDestroy);
             }
         }

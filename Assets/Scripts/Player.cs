@@ -6,7 +6,7 @@ namespace MineMiner
     {
         public Player()
         {
-            Damage = 2f;
+            Damage = 5f;
         }
         
         public float Damage { get; set; }

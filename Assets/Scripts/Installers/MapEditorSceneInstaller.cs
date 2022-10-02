@@ -18,6 +18,7 @@ namespace MineMiner
             Container.Bind<MapEditorSceneAccessor>().FromInstance(_mapEditorSceneAccessor);
             Container.Bind<MapEditorCameraController>().FromInstance(_mapEditorCameraController);
             Container.Bind<MapEditorNavigator>().AsSingle().NonLazy();
+            Container.Bind<LevelGenerator>().AsSingle().NonLazy();
         }
     }
 }

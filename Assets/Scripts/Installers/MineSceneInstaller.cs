@@ -21,7 +21,8 @@ namespace MineMiner
             Container.Bind<ICameraMovementStrategy>().FromInstance(aroundCameraMovementStrategy);
             Container.Bind<BlocksFactory>().FromInstance(_blocksFactory);
             Container.Bind<LevelsFilesConfig>().FromInstance(_levelsFilesConfig);
-            
+            Container.Bind<LevelGenerator>().AsSingle().NonLazy();
+
             Container.Bind<MineSceneAccessor>().FromInstance(_mineSceneAccessor);
         }
     }

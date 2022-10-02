@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MineMiner
 {
@@ -7,6 +8,7 @@ namespace MineMiner
         [SerializeField] private MapEditorUI _mapEditorUI;
         [SerializeField] private Transform _levelStartPoint;
         [SerializeField] private DestroyableBlockView _currentSampleBlockView;
+        [SerializeField] public Image NoizeImage;
 
         public MapEditorUI MapEditorUI => _mapEditorUI;
         public Transform LevelStartPoint => _levelStartPoint;

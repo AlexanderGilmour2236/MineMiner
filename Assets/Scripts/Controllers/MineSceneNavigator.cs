@@ -14,7 +14,8 @@ namespace MineMiner
         [Inject] private MineSceneAccessor _mineSceneAccessor;
         [Inject] private BlocksFactory _blocksFactory;
         [Inject] private LevelsFilesConfig _levelsFilesConfig;
-        
+        [Inject] private LevelGenerator _levelGenerator;
+
         private CameraRaycastController _cameraRaycastController;
         private bool _isNaviatorInitiated;
 
@@ -62,22 +63,25 @@ namespace MineMiner
 
         private void CreateLevelBlocks()
         {
-            LevelData levelData = SaveLoadController.LoadObjectFromString(
-                _levelsFilesConfig.LevelConfigs[Random.Range(0, _levelsFilesConfig.LevelConfigs.Length)].LevelFile.text,
-                (json) => new LevelData(json));
+            // LevelData levelData = SaveLoadController.LoadObjectFromString(
+            //     _levelsFilesConfig.LevelConfigs[Random.Range(0, _levelsFilesConfig.LevelConfigs.Length)].LevelFile.text,
+            //     (json) => new LevelData(json));
+            //
+            //
+            // int blockIndex = 0;
+            // foreach (BlockData blockData in levelData.BlockDatas)
+            // {
+            //     blockData.BlockMetaData = _blocksFactory.GetBlockMetaData(blockData.BlockId); 
+            //     if (blockData.BlockDataType == BlockDataType.Destroyable)
+            //     {
+            //         DestroyableBlockData destroyableBlockData = (DestroyableBlockData) blockData;
+            //         _blocksController.CreateBlock(destroyableBlockData.Position, (DestroyableBlockMetaData)blockData.BlockMetaData);
+            //     }
+            //
+            //     blockIndex++;
+            // }
             
-            int blockIndex = 0;
-            foreach (BlockData blockData in levelData.BlockDatas)
-            {
-                blockData.BlockMetaData = _blocksFactory.GetBlockMetaData(blockData.BlockId); 
-                if (blockData.BlockDataType == BlockDataType.Destroyable)
-                {
-                    DestroyableBlockData destroyableBlockData = (DestroyableBlockData) blockData;
-                    _blocksController.CreateBlock(destroyableBlockData.Position, (DestroyableBlockMetaData)blockData.BlockMetaData);
-                }
-
-                blockIndex++;
-            }
+            _levelGenerator.GenerateLevel(Random.Range(3, 6),Random.Range(5,10), Random.Range(3, 7));
 
             _blocksController.SetCenterPoint();
             _levelCameraController.setPivotPosition(_blocksController.LevelCenterTransform.position);
