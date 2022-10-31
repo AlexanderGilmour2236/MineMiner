@@ -18,10 +18,12 @@ namespace MineMiner
 
         private CameraRaycastController _cameraRaycastController;
         private bool _isNaviatorInitiated;
+        private readonly Player _player;
 
         [Inject]
-        public MineSceneNavigator(LevelCameraController levelCameraController)
+        public MineSceneNavigator(LevelCameraController levelCameraController, Player player)
         {
+            _player = player;
             _cameraRaycastController = new CameraRaycastController(levelCameraController.Camera, 1 << LayerMask.NameToLayer(TagManager.DestroyableBlocksLayer));
         }
         
@@ -89,16 +91,20 @@ namespace MineMiner
 
         private void OnBlockHit(DestroyableBlockView blockView)
         {
-            if (blockView.Hit(Time.deltaTime * ((MineMinerApp)App.Instance()).Player.Damage))
+            if (blockView.Hit(Time.deltaTime * MineMinerApp.Instance().Player.Damage))
             {
+                DestroyableBlockMetaData destroyableBlockMetaData = blockView.DestroyableBlockMetaData;
                 return;
             }
+
             _levelCameraController.StopDrag();
+            
         }
 
-        private void OnOnBlockDestroy(BlockView block)
+        private void OnOnBlockDestroy(BlockView block, int droppedBlocksCount)
         {
             _blocksController.SetCenterPoint();
+            MineMinerApp.Instance().Player.PlayerResources.AddResource((int)block.MetaData.BlockDataType, droppedBlocksCount);
             _levelCameraController.setPivotPosition(_blocksController.LevelCenterTransform.position);
         }
 

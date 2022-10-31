@@ -2,323 +2,56 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b86d8612-bceb-47a4-8a05-d7bc538cb929" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/CameraRaycastController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/CameraRaycastController.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MineMiner/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MineMiner/.idea/contentModel.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerResources/PlayerResource.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerResources/PlayerResource.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerResources/PlayerResourceTypes.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerResources/PlayerResourceTypes.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MineMiner/.idea/contentModel.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MineMiner/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MineMiner/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MineMiner/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MineMiner/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MineMiner/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.MineMiner/riderModule.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/Blocks/coin_rock_block.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Blocks/coin_rock_block.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_00_block.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_00_block.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_01_block.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_01_block.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_02_block.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_02_block.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_03_block.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_03_block.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/BlockView.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/BlockView.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Data/Blocks/stone_block.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Blocks/stone_block.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/DroppedBlockView.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/DroppedBlockView.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MapEditor.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MapEditor.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/App.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/App.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/BlocksController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/BlocksController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/LevelCameraController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/LevelCameraController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/MineSceneNavigator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/MineSceneNavigator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/BlockData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/BlockData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/BlockDataProvider.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/BlockDataProvider.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/Navigator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/Navigator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/BlocksConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/BlocksConfig.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/DestroyableBlockData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/DestroyableBlockData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/LevelData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/LevelData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/DestroyableBlockMetaData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/DestroyableBlockMetaData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/DroppedBlockMetaData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/DroppedBlockMetaData.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Factories/BlocksFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Factories/BlocksFactory.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Installers/MineSceneInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Installers/MineSceneInstaller.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Loader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Loader.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MapEditor/MapEditorNavigator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MapEditor/MapEditorNavigator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MineMinerApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MineMinerApp.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Misc/FindAssetsOfType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Misc/FindAssetsOfType.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SceneAccessors/MapEditorSceneAccessor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SceneAccessors/MapEditorSceneAccessor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TagManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TagManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SceneAccessors/MineSceneAccessor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SceneAccessors/MineSceneAccessor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Views/DestroyableBlockView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Views/DestroyableBlockView.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/MineSceneNavigator.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="57" column="35" selection-start-line="57" selection-start-column="35" selection-end-line="57" selection-end-column="35" />
-              <folding>
-                <marker date="1664058940550" expanded="true" signature="6:81" ph="..." />
-                <marker date="1664058940550" expanded="true" signature="102:3495" ph="{...}" />
-                <marker date="1664058940550" expanded="true" signature="152:3493" ph="{...}" />
-                <marker date="1664058940550" expanded="true" signature="624:805" ph="{...}" />
-                <marker date="1664058940550" expanded="true" signature="848:922" ph="{...}" />
-                <marker date="1664058940550" expanded="true" signature="959:1209" ph="{...}" />
-                <marker date="1664058940550" expanded="true" signature="1008:1060" ph="{...}" />
-                <marker date="1664058940550" expanded="true" signature="1249:1733" ph="{...}" />
-                <marker date="1664058940550" expanded="true" signature="1796:1989" ph="{...}" />
-                <marker date="1664058940550" expanded="true" signature="2031:2981" ph="{...}" />
-                <marker date="1664058940550" expanded="true" signature="2325:2820" ph="{...}" />
-                <marker date="1664058940550" expanded="true" signature="2508:2775" ph="{...}" />
-                <marker date="1664058940550" expanded="true" signature="3046:3259" ph="{...}" />
-                <marker date="1664058940550" expanded="true" signature="3150:3202" ph="{...}" />
-                <marker date="1664058940550" expanded="true" signature="3315:3485" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/LevelCameraController.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="96">
-              <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-              <folding>
-                <marker date="1664057856852" expanded="true" signature="6:65" ph="..." />
-                <marker date="1664057856852" expanded="true" signature="86:2232" ph="{...}" />
-                <marker date="1664057856852" expanded="true" signature="193:2230" ph="{...}" />
-                <marker date="1664057856852" expanded="true" signature="766:907" ph="{...}" />
-                <marker date="1664057856852" expanded="true" signature="943:1500" ph="{...}" />
-                <marker date="1664057856852" expanded="true" signature="1561:1635" ph="{...}" />
-                <marker date="1664057856852" expanded="true" signature="1694:1714" ph="{...}" />
-                <marker date="1664057856852" expanded="true" signature="1770:1844" ph="{...}" />
-                <marker date="1664057856852" expanded="true" signature="1876:2003" ph="{...}" />
-                <marker date="1664057856852" expanded="true" signature="2059:2130" ph="{...}" />
-                <marker date="1664057856852" expanded="true" signature="2168:2224" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/BlocksController.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="227">
-              <caret line="84" column="22" selection-start-line="84" selection-start-column="22" selection-end-line="84" selection-end-column="22" />
-              <folding>
-                <marker date="1664058940539" expanded="true" signature="6:135" ph="..." />
-                <marker date="1664058940539" expanded="true" signature="156:6872" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="192:6870" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="1126:1410" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="1277:1400" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="1438:1996" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="1620:1778" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="1684:1764" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="1812:1885" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="2068:2439" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="2226:2297" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="2523:2795" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="2714:2785" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="2854:2952" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="3017:3505" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="3235:3381" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="3574:4152" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="3767:4142" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="4220:4576" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="4368:4465" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="4640:5512" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="4696:4772" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="4862:5502" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="4988:5183" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="5204:5312" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="5567:5637" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="5765:6240" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="6278:6417" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="6498:6612" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="6653:6727" ph="{...}" />
-                <marker date="1664058940539" expanded="true" signature="6798:6862" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/Scripts/Data/DestroyableBlockData.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
-              <folding>
-                <marker date="1664056656693" expanded="true" signature="6:74" ph="..." />
-                <marker date="1664056656693" expanded="true" signature="95:1726" ph="{...}" />
-                <marker date="1664056656693" expanded="true" signature="147:1724" ph="{...}" />
-                <marker date="1664056656693" expanded="true" signature="391:497" ph="{...}" />
-                <marker date="1664056656693" expanded="true" signature="588:885" ph="{...}" />
-                <marker date="1664056656693" expanded="true" signature="924:1101" ph="{...}" />
-                <marker date="1664056656693" expanded="true" signature="1007:1064" ph="{...}" />
-                <marker date="1664056656693" expanded="true" signature="1144:1534" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/Scripts/Views/DestroyableBlockView.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="52" column="22" selection-start-line="52" selection-start-column="22" selection-end-line="52" selection-end-column="22" />
-              <folding>
-                <marker date="1664057951104" expanded="true" signature="6:64" ph="..." />
-                <marker date="1664057951104" expanded="true" signature="85:2846" ph="{...}" />
-                <marker date="1664057951104" expanded="true" signature="161:2844" ph="{...}" />
-                <marker date="1664057951104" expanded="true" signature="513:573" ph="{...}" />
-                <marker date="1664057951104" expanded="true" signature="612:886" ph="{...}" />
-                <marker date="1664057951104" expanded="true" signature="650:876" ph="/* if (_isPointerDown) ... */" />
-                <marker date="1664057951104" expanded="true" signature="945:1071" ph="{...}" />
-                <marker date="1664057951104" expanded="true" signature="1142:1287" ph="{...}" />
-                <marker date="1664057951104" expanded="true" signature="1372:1477" ph="/// Applies damage to block, returns true if block destroyed ... " />
-                <marker date="1664057951104" expanded="true" signature="1515:1877" ph="{...}" />
-                <marker date="1664057951104" expanded="true" signature="1564:1653" ph="{...}" />
-                <marker date="1664057951104" expanded="true" signature="1705:1840" ph="{...}" />
-                <marker date="1664057951104" expanded="true" signature="1908:1996" ph="{...}" />
-                <marker date="1664057951104" expanded="true" signature="2032:2085" ph="{...}" />
-                <marker date="1664057951104" expanded="true" signature="2128:2217" ph="{...}" />
-                <marker date="1664057951104" expanded="true" signature="2219:2497" ph="/* private void OnMouseOver() ... */" />
-                <marker date="1664057951104" expanded="true" signature="2532:2615" ph="{...}" />
-                <marker date="1664057951104" expanded="true" signature="2681:2754" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/Scripts/Player.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-              <folding>
-                <marker date="1664057118951" expanded="true" signature="56:216" ph="{...}" />
-                <marker date="1664057118951" expanded="true" signature="82:214" ph="{...}" />
-                <marker date="1664057118951" expanded="true" signature="112:157" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/CameraRaycastController.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="11" column="40" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
-              <folding>
-                <marker date="1664058760150" expanded="true" signature="6:62" ph="..." />
-                <marker date="1664058760150" expanded="true" signature="83:743" ph="{...}" />
-                <marker date="1664058760150" expanded="true" signature="126:741" ph="{...}" />
-                <marker date="1664058760150" expanded="true" signature="334:420" ph="{...}" />
-                <marker date="1664058760150" expanded="true" signature="456:735" ph="{...}" />
-                <marker date="1664058760150" expanded="true" signature="627:725" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/Scripts/TagManager.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="80">
-              <caret line="5" column="72" selection-start-line="5" selection-start-column="72" selection-end-line="5" selection-end-column="72" />
-              <folding>
-                <marker date="1664057871857" expanded="true" signature="19:194" ph="{...}" />
-                <marker date="1664057871857" expanded="true" signature="56:192" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/Scripts/Installers/MineSceneInstaller.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="17" column="69" selection-start-line="17" selection-start-column="69" selection-end-line="17" selection-end-column="69" />
-              <folding>
-                <marker date="1664058500603" expanded="true" signature="6:33" ph="..." />
-                <marker date="1664058500603" expanded="true" signature="54:1118" ph="{...}" />
-                <marker date="1664058500603" expanded="true" signature="108:1116" ph="{...}" />
-                <marker date="1664058500603" expanded="true" signature="467:1110" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Internal/Assert.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-80">
-              <caret line="370" selection-start-line="370" selection-end-line="370" />
-              <folding>
-                <marker date="1650208093329" expanded="true" signature="6:107" ph="..." />
-                <marker date="1650208093329" expanded="true" signature="129:13142" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="162:13140" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="293:423" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="331:413" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="551:716" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="604:706" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="928:1149" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="971:1139" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="1290:1520" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="1337:1510" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="1647:1699" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="1842:2105" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="1881:2095" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="2236:2434" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="2286:2424" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="2572:2792" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="2629:2782" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="2942:3158" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="3004:3148" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="3315:3553" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="3384:3543" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="3762:3820" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="4060:4378" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="4115:4368" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="4550:4801" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="4648:4791" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="5026:5332" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="5081:5322" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="5549:5610" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="5858:6179" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="5911:6169" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="6303:6506" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="6342:6496" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="6646:6811" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="6685:6801" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="7024:7197" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="7063:7187" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="7324:7498" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="7363:7488" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="7641:7785" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="7680:7775" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="8001:8153" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="8040:8143" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="8380:8536" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="8419:8526" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="8696:8900" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="8734:8890" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="9133:9414" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="9187:9404" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="9540:9681" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="9578:9671" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="9838:9996" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="9876:9986" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="10151:10292" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="10189:10282" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="10520:10669" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="10558:10659" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="10908:11061" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="10946:11051" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="11311:11468" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="11349:11458" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="11610:11757" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="11648:11747" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="11884:11943" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="12123:12444" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="12149:12203" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="12234:12286" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="12502:12578" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="12650:12720" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="12820:12906" ph="{...}" />
-                <marker date="1650208093329" expanded="true" signature="13032:13134" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <replaceStrings>
@@ -337,55 +70,53 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Views/SpiteBlockView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/BlockDataChanger.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Views/BlockStrategies/RigidBodyBlockMovementStrategy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Views/SpiteBlockView.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Views/DroppedBlockView.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Views/BlockView.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Views/CracksBlock.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MineMinerApp.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Views/DestroyableBlockView.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enums/BlockDataType.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enums/BlockId.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enums/BlockType.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Misc/MonoPool.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/LevelData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Misc/FindAssetsOfType.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/CameraRaycastController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/BlockData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/BlockMetaData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/BlocksConfig.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/DestroyableBlockData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/DroppedBlockMetaData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/BlockDataProvider.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/DestroyableBlockMetaData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/SaveLoadLevelController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SceneAccessors/MineSceneAccessor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SceneAccessors/MapEditorSceneAccessor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/MineSceneNavigator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/ICameraMovementStrategy.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/BlocksController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/LevelCameraController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/Navigator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Internal/Assert.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/AroundCameraMovementStrategy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Views/BlockStrategies/MeshBlockRendererStrategy.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Main/DiContainer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CursorLocker.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/SaveLoadController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/App.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TagManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SimpleJSON/JSONKeys.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Installers/MineSceneInstaller.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ClampAngleHelper.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MapEditor/MapEditorNavigator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Views/BlockStrategies/BlockMovementStrategy.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Player.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ClampAngleHelper.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Views/BlockStrategies/BlockRendererStrategy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Views/BlockStrategies/SpriteBlockRendererStrategy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Views/BlockStrategies/RigidBodyBlockMovementStrategy.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Installers/MapEditorSceneInstaller.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Factories/BlocksFactory.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CursorLocker.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Views/BlockStrategies/BlockMovementStrategy.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Views/BlockStrategies/SpriteBlockRendererStrategy.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Views/BlockStrategies/MeshBlockRendererStrategy.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Views/BlockStrategies/BlockRendererStrategy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Installers/MineSceneInstaller.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/Navigator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/DestroyableBlockData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/ICameraMovementStrategy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/MineSceneNavigator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SimpleJSON/JSONKeys.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/AroundCameraMovementStrategy.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/TagManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SceneAccessors/MapEditorSceneAccessor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/BlocksController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Controllers/LevelCameraController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SceneAccessors/MineSceneAccessor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/BlockData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MapEditor/MapEditorNavigator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/BlockDataProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/BlockMetaData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/PlayerResources/PlayerResources.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/DroppedBlockMetaData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/DestroyableBlockMetaData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Plugins/Zenject/Source/Internal/Assert.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/LevelData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Misc/FindAssetsOfType.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Misc/MonoPool.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/App.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enums/BlockDataType.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enums/BlockType.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Enums/BlockId.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Data/BlocksConfig.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Views/DestroyableBlockView.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Views/CracksBlock.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Loader.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Views/BlockView.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -555,36 +286,32 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.tabs" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors" />
     <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" pid="11604">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="11604" />
+      <option name="pid" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
       <method v="2" />
     </configuration>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -618,6 +345,12 @@
       <workItem from="1663018529414" duration="1665000" />
       <workItem from="1664033890670" duration="4866000" />
       <workItem from="1664041301531" duration="7526000" />
+      <workItem from="1664644058736" duration="5744000" />
+      <workItem from="1664739121733" duration="12644000" />
+      <workItem from="1664915527189" duration="1972000" />
+      <workItem from="1666384600008" duration="1489000" />
+      <workItem from="1666551672020" duration="3412000" />
+      <workItem from="1667250534305" duration="315000" />
     </task>
     <servers />
   </component>
@@ -670,7 +403,7 @@
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
+    <option name="version" value="3" />
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
@@ -680,14 +413,7 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="RECENTLY_FILTERED_USER_GROUPS">
-                <collection />
-              </option>
-              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-                <collection />
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
@@ -706,6 +432,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

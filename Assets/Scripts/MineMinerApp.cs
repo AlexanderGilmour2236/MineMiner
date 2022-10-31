@@ -5,8 +5,7 @@ namespace MineMiner
     public class MineMinerApp : App
     {
         [Inject] private MineSceneNavigator _mineSceneNavigator;
-        
-        private Player _player;
+
 
         public override void StartGame()
         {
@@ -14,7 +13,7 @@ namespace MineMiner
             _player = new Player();
             _mineSceneNavigator.Go();
         }
-        
+
         public Player Player
         {
             get { return _player; }

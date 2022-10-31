@@ -18,3 +18,5 @@ MonoBehaviour:
   Material: {fileID: 2100000, guid: 180dea4e0148ba244a3c6a1df581490d, type: 2}
   Strength: 1
   droppedBlockMetaData: {fileID: 0}
+  DroppedMinCount: 4
+  DroppedMaxCount: 8

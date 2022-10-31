@@ -14,7 +14,7 @@ namespace MineMiner
         
         private Transform _levelCenterTransform;
         
-        public event Action<DestroyableBlockView> onBlockDestroy;
+        public event Action<DestroyableBlockView, int> onBlockDestroy;
         public event Action<DestroyableBlockView> onBlockHit;
 
         private bool _undoRaycastHit;
@@ -97,7 +97,6 @@ namespace MineMiner
 
         public void DestroyBlock(DestroyableBlockView block)
         {
-            onBlockDestroy?.Invoke(block);
             _currentCurrentBlocks.Remove(block);
             _currentBlocksData.Remove(block.DestroyableBlockData);
 
@@ -116,11 +115,12 @@ namespace MineMiner
             BlockView[] droppedBlockViews = _blocksFactory.GetDroppedBlockViews(block.DestroyableBlockMetaData);
             foreach (BlockView droppedBlockView in droppedBlockViews)
             {
-                droppedBlockView.AddForce(new Vector3(Random.Range(-1, 1), Random.Range(0.5f, 1), Random.Range(-1, 1)));
+                droppedBlockView.AddForce(new Vector3(Random.Range(-1, 1), Random.Range(0.5f, 1), Random.Range(-1, 1)) * 3);
                 droppedBlockView.transform.position = block.transform.position;
                 droppedBlockView.AddRotation(new Vector3(Random.Range(0, 180), Random.Range(0, 180),
                     Random.Range(0, 180))); 
             }
+            onBlockDestroy?.Invoke(block, droppedBlockViews.Length);
         }
 
         Vector3 FindCenterPoint(List<DestroyableBlockView> blocks)

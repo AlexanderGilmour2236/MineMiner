@@ -27,11 +27,13 @@ namespace MineMiner
             }
         }
 
+        #if UNITY_EDITOR
         [ContextMenu("Find All Blocks")]
         private void FindAllBLocks()
         {
             _destroyableBlockMetaDatas = FindAssetsOfType.FindAssetsByType<DestroyableBlockMetaData>();
         }
+        #endif
 
         public List<DestroyableBlockMetaData> DestroyableBlockMetaDatas
         {

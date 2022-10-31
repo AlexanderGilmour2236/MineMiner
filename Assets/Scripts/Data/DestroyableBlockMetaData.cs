@@ -8,6 +8,8 @@ namespace MineMiner
     {
         public float Strength;
         public DroppedBlockMetaData droppedBlockMetaData;
+        public int DroppedMinCount;
+        public int DroppedMaxCount;
         
         public override BlockDataType BlockDataType => BlockDataType.Destroyable;
     }

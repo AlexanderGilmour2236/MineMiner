@@ -55,8 +55,10 @@ namespace MineMiner
 
         private void OnLoadLevelButtonClick()
         {
+#if UNITY_EDITOR
             _filePath = EditorUtility.OpenFilePanel("Open level for editing", _saveLoadPath, "json");
-            StartEditingLevel(_filePath, StartEditingLevelMode.LOAD_LEVEL);
+            StartEditingLevel(_filePath, StartEditingLevelMode.LOAD_LEVEL);    
+#endif
         }
 
         private void OnSaveLevel()
@@ -135,9 +137,11 @@ namespace MineMiner
 
         private void OnNewLevelButtonClick()
         {
+#if UNITY_EDITOR
             _filePath = EditorUtility.SaveFilePanel("Create file for a new Level", 
                 _saveLoadPath, "Level00.json", ".json");
             StartEditingLevel(_filePath, StartEditingLevelMode.NEW_LEVEL);
+#endif
         }
 
         private void StartEditingLevel(string filePath, StartEditingLevelMode startEditingLevelMode)
@@ -147,8 +151,6 @@ namespace MineMiner
             {
                 case StartEditingLevelMode.GENERATE_LEVEL:
                     _levelGenerator.GenerateLevel(Random.Range(3, 6),Random.Range(5,10), Random.Range(3, 7));
-                    
-                    // _levelGenerator.GenerateLevel(20,20, 20);
                     _blocksList.AddRange(_blocksController.CurrentBlocks);
                     break;
                 case StartEditingLevelMode.NEW_LEVEL:

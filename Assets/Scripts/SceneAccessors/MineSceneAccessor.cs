@@ -1,4 +1,7 @@
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace MineMiner
 {
@@ -7,6 +10,12 @@ namespace MineMiner
         [SerializeField] private Transform _levelParent;
         [SerializeField] private Transform _levelCenterTransform;
         [SerializeField] private CracksBlock _cracksBlockPrefab;
+        [SerializeField] private Button _rButton;
+
+        public void Awake()
+        {
+            _rButton.onClick.AddListener(() => App.RestartApp());
+        }
 
         public Transform LevelParent
         {

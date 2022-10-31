@@ -3,6 +3,7 @@ using UnityEditor;
 
 public class FindAssetsOfType
 {
+    #if UNITY_EDITOR
     public static List<T> FindAssetsByType<T>() where T : UnityEngine.Object
     {
         List<T> assets = new List<T>();
@@ -18,4 +19,5 @@ public class FindAssetsOfType
         }
         return assets;
     }
+    #endif
 }

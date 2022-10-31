@@ -33,11 +33,7 @@ namespace MineMiner
         public BlockView[] GetDroppedBlockViews(DestroyableBlockMetaData blockMetaData)
         {
             int droppedBlocksCount = 1;
-            DroppedBlockMetaData droppedBlockMetaData = blockMetaData.droppedBlockMetaData;
-            if (droppedBlockMetaData != null)
-            {
-                droppedBlocksCount = Random.Range(droppedBlockMetaData.DroppedMinCount, droppedBlockMetaData.DroppedMaxCount);
-            }
+            droppedBlocksCount = Random.Range(blockMetaData.DroppedMinCount, blockMetaData.DroppedMaxCount);
             
             BlockView[] droppedBlocks = new BlockView[droppedBlocksCount];
             for (int i = 0; i < droppedBlocksCount; i++)

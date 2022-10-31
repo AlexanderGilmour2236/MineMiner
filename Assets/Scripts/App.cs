@@ -5,10 +5,8 @@ namespace MineMiner
 {
     public class App : ITickable
     {
-        private static App _instance;
-        private Navigator _activeNavigator;
-
-        public virtual void StartGame() { }
+        protected Navigator _activeNavigator;
+        protected static App _instance;
 
         public App()
         {
@@ -17,20 +15,22 @@ namespace MineMiner
                 _instance = this;
             }
         }
-
-        public static App Instance()
-        {
-            if (_instance == null)
-            {
-                _instance = new App();
-            }
-
-            return _instance;
-        }
+        
+        public virtual void StartGame() { }
 
         public void Tick()
         {
             _activeNavigator.Tick();
+        }
+        
+        public static MineMinerApp Instance()
+        {
+            if (_instance == null)
+            {
+                _instance = new MineMinerApp();
+            }
+
+            return _instance;
         }
 
         public void SetActiveNavigator(Navigator navigator)
@@ -40,7 +40,6 @@ namespace MineMiner
 
         public static void RestartApp()
         {
-            _instance = null;
             SceneManager.LoadScene("MainScene");
         }
     }

@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace MineMiner
 {
@@ -9,7 +8,6 @@ namespace MineMiner
     {
         [SerializeField] private DestroyableBlockMetaData destroyableBlockMetaData;
         
-//        private bool _isPointerDown;
         private DestroyableBlockData _destroyableBlockData;
 
         public event Action<DestroyableBlockView> onHit;
@@ -18,20 +16,6 @@ namespace MineMiner
         private void Start()
         {
             SetMetaData(blockMetaData);
-        }
-
-        public override void Update()
-        {
-            base.Update();
-//            if (_isPointerDown)
-//            {
-//                onHit?.Invoke(this);
-//            }
-//
-//            if (Input.GetMouseButtonUp(0))
-//            {
-//                _isPointerDown = false;
-//            }
         }
 
         public override void SetData(BlockData blockData)
@@ -71,7 +55,6 @@ namespace MineMiner
         public void UndoHit()
         {
             print("UndoHit");
-//            _isPointerDown = false;
         }
 
         public void DestroyBlock()
@@ -83,19 +66,6 @@ namespace MineMiner
         {
             return StrengthLeft / destroyableBlockMetaData.Strength;
         }
-
-//        private void OnMouseOver()
-//        {
-//            if (Input.GetMouseButton(0))
-//            {
-//                _isPointerDown = true;
-//            }
-//        }
-//
-//        private void OnMouseExit()
-//        {
-//            _isPointerDown = false;
-//        }
 
         public float StrengthLeft
         {

@@ -8,6 +8,7 @@ namespace MineMiner
     {
         private void Start()
         {
+            Application.targetFrameRate = 60;
             App.Instance().StartGame();
         }
 

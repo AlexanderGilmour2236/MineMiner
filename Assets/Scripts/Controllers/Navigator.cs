@@ -9,7 +9,7 @@ namespace MineMiner
         
         public virtual void Go()
         {
-            App.Instance().SetActiveNavigator(this);
+            MineMinerApp.Instance().SetActiveNavigator(this);
         }
 
         public virtual void ExitNavigator()
