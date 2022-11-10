@@ -16,7 +16,7 @@ namespace MineMiner
             Container.BindInterfacesTo<MineMinerApp>().AsSingle().NonLazy();
 
             Container.Bind<LevelCameraController>().FromInstance(_levelCameraController);
-            Container.Bind<MineSceneNavigator>().FromNew().AsSingle().WithArguments(_levelCameraController).NonLazy();
+            Container.Bind<MineSceneNavigator>().FromNew().AsSingle().WithArguments(_levelCameraController, new Player()).NonLazy();
             Container.Bind<BlocksController>().AsSingle().NonLazy();
             Container.Bind<BlocksFactory>().FromInstance(_blocksFactory);
             Container.Bind<LevelsFilesConfig>().FromInstance(_levelsFilesConfig);

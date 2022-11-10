@@ -2,50 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b86d8612-bceb-47a4-8a05-d7bc538cb929" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerResources/PlayerResource.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerResources/PlayerResource.cs.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerResources/PlayerResourceTypes.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerResources/PlayerResourceTypes.cs.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MineMiner/.idea/contentModel.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MineMiner/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MineMiner/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MineMiner/.idea/modules.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MineSceneUI.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/MineSceneUI.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/ResourceIndicator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/UI/ResourceIndicator.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.MineMiner/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.MineMiner/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.MineMiner/riderModule.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/Blocks/coin_rock_block.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Blocks/coin_rock_block.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_00_block.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_00_block.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_01_block.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_01_block.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_02_block.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_02_block.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_03_block.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Blocks/dirt_03_block.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Data/Blocks/stone_block.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Data/Blocks/stone_block.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/DroppedBlockView.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/DroppedBlockView.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Fonts/joystix monospace SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Fonts/joystix monospace SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainScene.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/App.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/App.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/BlocksController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/BlocksController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/MineSceneNavigator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/MineSceneNavigator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Controllers/Navigator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Controllers/Navigator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/BlocksConfig.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/BlocksConfig.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/DestroyableBlockMetaData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/DestroyableBlockMetaData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Data/DroppedBlockMetaData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Data/DroppedBlockMetaData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Factories/BlocksFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Factories/BlocksFactory.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Installers/MineSceneInstaller.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Installers/MineSceneInstaller.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Loader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Loader.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MapEditor/MapEditorNavigator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MapEditor/MapEditorNavigator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MineMinerApp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MineMinerApp.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Misc/FindAssetsOfType.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Misc/FindAssetsOfType.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerResources/PlayerResource.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerResources/PlayerResource.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerResources/PlayerResources.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerResources/PlayerResources.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/SceneAccessors/MineSceneAccessor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SceneAccessors/MineSceneAccessor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Views/DestroyableBlockView.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Views/DestroyableBlockView.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/UnityConnectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -277,7 +252,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.3502052" />
+    <property name="DebuggerViewTab_PTCS_FirstProportionKey" value="0.34994584" />
     <property name="DebuggerViewTab_PTCS_LastProportionKey" value="0.0" />
     <property name="Discover.Launch.Via.Unity" value="true" />
     <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
@@ -350,7 +325,8 @@
       <workItem from="1664915527189" duration="1972000" />
       <workItem from="1666384600008" duration="1489000" />
       <workItem from="1666551672020" duration="3412000" />
-      <workItem from="1667250534305" duration="315000" />
+      <workItem from="1667250534305" duration="4471000" />
+      <workItem from="1668123302152" duration="349000" />
     </task>
     <servers />
   </component>

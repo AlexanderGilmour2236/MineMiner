@@ -7,7 +7,7 @@ namespace MineMiner
     public class DestroyableBlockMetaData : BlockMetaData
     {
         public float Strength;
-        public DroppedBlockMetaData droppedBlockMetaData;
+        public BlockMetaData droppedBlockMetaData;
         public int DroppedMinCount;
         public int DroppedMaxCount;
         

@@ -11,6 +11,8 @@ namespace MineMiner
         [SerializeField] private Transform _levelCenterTransform;
         [SerializeField] private CracksBlock _cracksBlockPrefab;
         [SerializeField] private Button _rButton;
+        [SerializeField] private MineSceneUI _mineSceneUI;
+
 
         public void Awake()
         {
@@ -31,5 +33,11 @@ namespace MineMiner
         {
             get { return _cracksBlockPrefab; }
         }
+        
+        public MineSceneUI MineSceneUI
+        {
+            get { return _mineSceneUI; }
+        }
+
     }
 }

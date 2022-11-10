@@ -23,7 +23,7 @@ namespace MineMiner
             _activeNavigator.Tick();
         }
         
-        public static MineMinerApp Instance()
+        public static App Instance()
         {
             if (_instance == null)
             {

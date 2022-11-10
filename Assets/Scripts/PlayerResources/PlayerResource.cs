@@ -1,19 +1,21 @@
+using MineMiner;
+
 namespace ResourcesProvider
 {
     public class PlayerResource
     {
-        private int _id;
+        private BlockId _blockId;
         private int _amount;
 
-        public PlayerResource(int resourceId, int amount)
+        public PlayerResource(BlockId blockBlockId, int amount)
         {
-            _id = resourceId;
+            _blockId = blockBlockId;
             _amount = amount;
         }
 
-        public int ID
+        public BlockId BlockId
         {
-            get { return _id; }
+            get { return _blockId; }
         }
 
         public int Amount

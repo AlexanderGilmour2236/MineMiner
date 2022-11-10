@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ResourcesProvider;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
@@ -19,19 +20,40 @@ namespace MineMiner
         private CameraRaycastController _cameraRaycastController;
         private bool _isNaviatorInitiated;
         private readonly Player _player;
+        private MineSceneUI _mineSceneUI;
+
 
         [Inject]
         public MineSceneNavigator(LevelCameraController levelCameraController, Player player)
         {
             _player = player;
+            SubscribePlayer(_player);
             _cameraRaycastController = new CameraRaycastController(levelCameraController.Camera, 1 << LayerMask.NameToLayer(TagManager.DestroyableBlocksLayer));
         }
-        
+
+        private void SubscribePlayer(Player player)
+        {
+            player.PlayerResources.onResourceChange += OnPlayerResourceChanged;
+        }
+
+        private void OnPlayerResourceChanged(PlayerResource playerResource)
+        {
+            _mineSceneUI.UpdatePlayerResource(playerResource);
+        }
+
         public override void Go()
         {
             base.Go();
             InitControllers();
+            InitUI();
         }
+
+        private void InitUI()
+        {
+            _mineSceneUI = _mineSceneAccessor.MineSceneUI;
+            _mineSceneUI.Init(_blocksFactory);
+        }
+        
 
         public override void Tick()
         {
@@ -91,7 +113,7 @@ namespace MineMiner
 
         private void OnBlockHit(DestroyableBlockView blockView)
         {
-            if (blockView.Hit(Time.deltaTime * MineMinerApp.Instance().Player.Damage))
+            if (blockView.Hit(Time.deltaTime * _player.Damage))
             {
                 DestroyableBlockMetaData destroyableBlockMetaData = blockView.DestroyableBlockMetaData;
                 return;
@@ -104,7 +126,7 @@ namespace MineMiner
         private void OnOnBlockDestroy(BlockView block, int droppedBlocksCount)
         {
             _blocksController.SetCenterPoint();
-            MineMinerApp.Instance().Player.PlayerResources.AddResource((int)block.MetaData.BlockDataType, droppedBlocksCount);
+            _player.PlayerResources.AddResource(block.MetaData.Id, droppedBlocksCount);
             _levelCameraController.setPivotPosition(_blocksController.LevelCenterTransform.position);
         }
 

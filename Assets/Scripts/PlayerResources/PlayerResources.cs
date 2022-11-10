@@ -1,40 +1,43 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MineMiner;
 using UnityEngine;
 
 namespace ResourcesProvider
 {
     public class PlayerResources
     {
-        private Dictionary<int, PlayerResource> _resourcesDictionary = new Dictionary<int, PlayerResource>();
+        private Dictionary<BlockId, PlayerResource> _resourcesDictionary = new Dictionary<BlockId, PlayerResource>();
+        public event Action<PlayerResource> onResourceChange;
 
-        public virtual PlayerResource GetPlayerResource(int resourceId)
+        public virtual PlayerResource GetPlayerResource(BlockId blockId)
         {
             PlayerResource playerResource = null;
-            if (_resourcesDictionary.ContainsKey(resourceId))
+            if (_resourcesDictionary.ContainsKey(blockId))
             {
-                playerResource = _resourcesDictionary[resourceId];
+                playerResource = _resourcesDictionary[blockId];
             }
             else
             {
-                playerResource = new PlayerResource(resourceId, 0);
-                _resourcesDictionary[resourceId] = playerResource;
+                playerResource = new PlayerResource(blockId, 0);
+                _resourcesDictionary[blockId] = playerResource;
             }
 
             return playerResource;
         }
 
-        public PlayerResource AddResource(int resourceId, int incrementValue)
+        public PlayerResource AddResource(BlockId blockId, int incrementValue)
         {
-            PlayerResource playerResource = GetPlayerResource(resourceId);
+            PlayerResource playerResource = GetPlayerResource(blockId);
             playerResource.Amount += incrementValue;
+            onResourceChange?.Invoke(playerResource);
             return playerResource;
         }
 
-        public PlayerResource SetResources(int resourceId, int value)
+        public PlayerResource SetResources(BlockId blockId, int value)
         {
-            PlayerResource playerResource = GetPlayerResource(resourceId);
+            PlayerResource playerResource = GetPlayerResource(blockId);
             playerResource.Amount = value;
             return playerResource;
         }
