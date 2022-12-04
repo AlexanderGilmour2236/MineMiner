@@ -1,21 +1,20 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using Zenject;
-using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
 
 namespace MineMiner
 {
     public class BlocksController
     {
-        [Inject] private BlocksFactory _blocksFactory;
+        private BlocksFactory _blocksFactory;
         
         private Transform _levelCenterTransform;
         
         public event Action<DestroyableBlockView, int> onBlockDestroy;
         public event Action<DestroyableBlockView> onBlockHit;
+
+        private const float DroppedBlocksYNegLimit = -10;
 
         private bool _undoRaycastHit;
         private bool _isHittingBlockInCurrentFrame;
@@ -27,7 +26,13 @@ namespace MineMiner
         private Vector3 _centerPoint;
         private DestroyableBlockView _currentHittingBlock;
         private Transform _levelParent;
+        private List<DroppedBlockView> _allDroppedBlockViews = new List<DroppedBlockView>();
 
+        public BlocksController(BlocksFactory blocksFactory)
+        {
+            _blocksFactory = blocksFactory;
+        }
+        
         public void Init(CracksBlock cracksBlockPrefab, Transform levelCenterTransform, Transform levelParent)
         {
             _levelCenterTransform = levelCenterTransform;
@@ -35,7 +40,7 @@ namespace MineMiner
             if (cracksBlockPrefab != null)
             {
                 _cracksBlocksPool = new MonoPool<CracksBlock>(levelParent, cracksBlockPrefab);
-            }
+            } 
         }
 
         public void Tick()
@@ -57,7 +62,29 @@ namespace MineMiner
             
             _isHittingBlockInCurrentFrame = false;
             _undoRaycastHit = false;
+
+            CheckDroppedBlocks();
         }
+
+        private void CheckDroppedBlocks()
+        {
+            List<DroppedBlockView> blocksToRemove = new List<DroppedBlockView>();
+            foreach (DroppedBlockView droppedBlockView in _allDroppedBlockViews)
+            {
+                if (droppedBlockView.transform.position.y <= DroppedBlocksYNegLimit)
+                {
+                    MonoPool<DroppedBlockView> droppedBlockPool = _blocksFactory.GetDroppedBlockPool(droppedBlockView);
+                    droppedBlockPool.ReleaseObject(droppedBlockView);
+                    blocksToRemove.Add(droppedBlockView);
+                }
+            }
+
+            foreach (DroppedBlockView droppedBlockView in blocksToRemove)
+            {
+                _allDroppedBlockViews.Remove(droppedBlockView);
+            }
+        }
+
 
         public void SetAllBlocksFromLevelGameObjects(Transform parent)
         {
@@ -65,7 +92,7 @@ namespace MineMiner
             
             foreach (DestroyableBlockView block in _currentCurrentBlocks)
             {
-                subscribeBlockView(block);
+                SubscribeBlockView(block);
             }
             
             _centerPoint = FindCenterPoint(_currentCurrentBlocks);
@@ -79,7 +106,7 @@ namespace MineMiner
             
             foreach (DestroyableBlockView block in getPlayerLevelBlocks)
             {
-                subscribeBlockView(block);
+                SubscribeBlockView(block);
             }
         }
 
@@ -112,7 +139,7 @@ namespace MineMiner
 
         private void CreateDroppedBlock(DestroyableBlockView block)
         {
-            BlockView[] droppedBlockViews = _blocksFactory.GetDroppedBlockViews(block.DestroyableBlockMetaData);
+            DroppedBlockView[] droppedBlockViews = _blocksFactory.GetDroppedBlockViews(block.DestroyableBlockMetaData);
             foreach (BlockView droppedBlockView in droppedBlockViews)
             {
                 droppedBlockView.AddForce(new Vector3(Random.Range(-1, 1), Random.Range(0.5f, 1), Random.Range(-1, 1)) * 3);
@@ -120,6 +147,8 @@ namespace MineMiner
                 droppedBlockView.AddRotation(new Vector3(Random.Range(0, 180), Random.Range(0, 180),
                     Random.Range(0, 180))); 
             }
+
+            _allDroppedBlockViews.AddRange(droppedBlockViews);
             onBlockDestroy?.Invoke(block, droppedBlockViews.Length);
         }
 
@@ -128,11 +157,16 @@ namespace MineMiner
             Vector3 blockCenter  = Vector3.zero;
             float count = 0;
 
+            if (blocks.Count == 0)
+            {
+                return _centerPoint;
+            }
             foreach (DestroyableBlockView block in blocks){
                 blockCenter += block.transform.position;
                 count++;
             }
-            
+
+
             Vector3 centerPoint = blockCenter / count;
 
             return centerPoint;
@@ -187,7 +221,7 @@ namespace MineMiner
             _currentCurrentBlocks.Add(blockView);
             _currentBlocksData.Add(blockView.DestroyableBlockData);
             
-            subscribeBlockView(blockView);
+            SubscribeBlockView(blockView);
             
             return blockView;
         }
@@ -198,7 +232,7 @@ namespace MineMiner
             _levelCenterTransform.position = _centerPoint;
         }
         
-        private void subscribeBlockView(DestroyableBlockView blockView)
+        private void SubscribeBlockView(DestroyableBlockView blockView)
         {
             blockView.onBlockDestroy += OnBlockDestroy;
             blockView.onHit += OnHit;

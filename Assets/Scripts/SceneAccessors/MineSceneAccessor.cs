@@ -12,6 +12,8 @@ namespace MineMiner
         [SerializeField] private CracksBlock _cracksBlockPrefab;
         [SerializeField] private Button _rButton;
         [SerializeField] private MineSceneUI _mineSceneUI;
+        [SerializeField] private LevelCameraController _cameraLevelController;
+        [SerializeField] private BlocksFactory _blocksFactory;
 
 
         public void Awake()
@@ -39,5 +41,14 @@ namespace MineMiner
             get { return _mineSceneUI; }
         }
 
+        public LevelCameraController CameraLevelController
+        {
+            get { return _cameraLevelController; }
+        }
+
+        public BlocksFactory BlocksFactory
+        {
+            get { return _blocksFactory; }
+        }
     }
 }

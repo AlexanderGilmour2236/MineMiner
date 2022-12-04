@@ -10,9 +10,24 @@ namespace MineMiner
         [SerializeField] private Button _loadLevelButton;
         [SerializeField] private Button _generateLevelButton;
 
-        public Button SaveLevelButton => _saveLevelButton;
-        public Button NewLevelButton => _newLevelButton;
-        public Button LoadLevelButton => _loadLevelButton;
-        public Button GenerateLevelButton => _generateLevelButton;
+        public Button SaveLevelButton
+        {
+            get { return _saveLevelButton; }
+        }
+
+        public Button NewLevelButton
+        {
+            get { return _newLevelButton; }
+        }
+
+        public Button LoadLevelButton
+        {
+            get { return _loadLevelButton; }
+        }
+
+        public Button GenerateLevelButton
+        {
+            get { return _generateLevelButton; }
+        }
     }
 }

@@ -1,19 +1,17 @@
 ﻿using System.Collections.Generic;
-using ModestTree;
-using SimpleJSON;
 using UnityEditor;
 using UnityEngine;
-using Zenject;
+using UnityEngine.SceneManagement;
 
 namespace MineMiner
 {
-    public class MapEditorNavigator : Navigator
+    public class MapEditorNavigator : SceneNavigator
     {
-        [Inject] private BlocksFactory _blocksFactory;
-        [Inject] private MapEditorSceneAccessor _mapEditorSceneAccessor;
-        [Inject] private MapEditorCameraController _mapEditorCameraController;
-        [Inject] private BlocksController _blocksController;
-        [Inject] private LevelGenerator _levelGenerator;
+        private BlocksFactory _blocksFactory;
+        private MapEditorSceneAccessor _mapEditorSceneAccessor;
+        private MapEditorCameraController _mapEditorCameraController;
+        private BlocksController _blocksController;
+        private LevelGenerator _levelGenerator;
         
         private string _saveLoadPath;
         private string _filePath;
@@ -21,12 +19,19 @@ namespace MineMiner
         private List<BlockView> _blocksList = new List<BlockView>();
         private DestroyableBlockView _currentSampleBlockView;
         private DestroyableBlockMetaData _currentBlockMetaData;
-        private DestroyableBlockMetaData[] _allBlocksMetaData;
+        private List<DestroyableBlockMetaData> _allBlocksMetaData;
 
-        public override void Go()
+        public MapEditorNavigator(string sceneName) : base(sceneName)
         {
-            base.Go();
+        }
 
+        protected override void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+        {
+            base.OnSceneLoaded(scene, loadSceneMode);
+            _mapEditorSceneAccessor = Object.FindObjectOfType<MapEditorSceneAccessor>();
+            _mapEditorCameraController = _mapEditorSceneAccessor.MapEditorCameraController;
+            _blocksFactory = _mapEditorSceneAccessor.BlocksFactory;
+            _blocksController = new BlocksController(_blocksFactory);
             _mapEditorUI = _mapEditorSceneAccessor.MapEditorUI;
             _saveLoadPath = $"{Application.dataPath}/Resources/Levels/";
             _mapEditorUI.NewLevelButton.onClick.AddListener(OnNewLevelButtonClick);
@@ -35,19 +40,19 @@ namespace MineMiner
             _mapEditorUI.GenerateLevelButton.onClick.AddListener(OnGenerateButtonClick);
             _blocksController.Init(null, _mapEditorSceneAccessor.LevelStartPoint, _mapEditorSceneAccessor.LevelStartPoint);
             _currentSampleBlockView = _mapEditorSceneAccessor.CurrentSampleBlockView;
-            _allBlocksMetaData = _blocksFactory.GetAllBlocksData();
-            setCurrentBlockData(_blocksFactory.DefaultBlockMetaData);
+            _allBlocksMetaData =  new List<DestroyableBlockMetaData>(_blocksFactory.GetAllBlocksData());
+            SetCurrentBlockData(_blocksFactory.DefaultBlockMetaData);
 
             InitControllers();
         }
 
         private void OnGenerateButtonClick()
         {
-            _levelGenerator.SetNoiseRenderer(_mapEditorSceneAccessor.NoizeImage);
-            StartEditingLevel(_filePath, StartEditingLevelMode.GENERATE_LEVEL);
+            _levelGenerator.SetNoiseRenderer(_mapEditorSceneAccessor._noizeImage);
+            StartEditingLevel(_filePath, StartEditingLevelMode.GenerateLevel);
         }
 
-        private void setCurrentBlockData(DestroyableBlockMetaData destroyableBlockMetaData)
+        private void SetCurrentBlockData(DestroyableBlockMetaData destroyableBlockMetaData)
         {
             _currentBlockMetaData = destroyableBlockMetaData;
             _currentSampleBlockView.SetMetaData(destroyableBlockMetaData);
@@ -57,7 +62,7 @@ namespace MineMiner
         {
 #if UNITY_EDITOR
             _filePath = EditorUtility.OpenFilePanel("Open level for editing", _saveLoadPath, "json");
-            StartEditingLevel(_filePath, StartEditingLevelMode.LOAD_LEVEL);    
+            StartEditingLevel(_filePath, StartEditingLevelMode.LoadLevel);    
 #endif
         }
 
@@ -103,31 +108,31 @@ namespace MineMiner
 
             if (Input.mouseScrollDelta.y > 0)
             {
-                setPrevCurrentBlockData();
+                SetPrevCurrentBlockData();
             }
             
             if (Input.mouseScrollDelta.y < 0)
             {
-                setNextCurrentBlockData();
+                SetNextCurrentBlockData();
             }
         }
 
-        private void setPrevCurrentBlockData()
+        private void SetPrevCurrentBlockData()
         {
             int nextIndex = _allBlocksMetaData.IndexOf(_currentBlockMetaData) - 1;
             if (nextIndex < 0)
             {
-                nextIndex = _allBlocksMetaData.Length - 1;
+                nextIndex = _allBlocksMetaData.Count - 1;
             }
 
             _currentBlockMetaData = _allBlocksMetaData[nextIndex];
             _currentSampleBlockView.SetMetaData(_currentBlockMetaData);
         }
 
-        private void setNextCurrentBlockData()
+        private void SetNextCurrentBlockData()
         {
             int nextIndex = _allBlocksMetaData.IndexOf(_currentBlockMetaData) + 1;
-            if (nextIndex >= _allBlocksMetaData.Length)
+            if (nextIndex >= _allBlocksMetaData.Count)
             {
                 nextIndex = 0;
             }
@@ -140,7 +145,7 @@ namespace MineMiner
 #if UNITY_EDITOR
             _filePath = EditorUtility.SaveFilePanel("Create file for a new Level", 
                 _saveLoadPath, "Level00.json", ".json");
-            StartEditingLevel(_filePath, StartEditingLevelMode.NEW_LEVEL);
+            StartEditingLevel(_filePath, StartEditingLevelMode.NewLevel);
 #endif
         }
 
@@ -149,14 +154,14 @@ namespace MineMiner
             ClearLastLevel();
             switch (startEditingLevelMode)
             {
-                case StartEditingLevelMode.GENERATE_LEVEL:
+                case StartEditingLevelMode.GenerateLevel:
                     _levelGenerator.GenerateLevel(Random.Range(3, 6),Random.Range(5,10), Random.Range(3, 7));
                     _blocksList.AddRange(_blocksController.CurrentBlocks);
                     break;
-                case StartEditingLevelMode.NEW_LEVEL:
+                case StartEditingLevelMode.NewLevel:
                     CreateFirstBlock();
                     break;
-                case StartEditingLevelMode.LOAD_LEVEL:
+                case StartEditingLevelMode.LoadLevel:
                     LoadLevel(filePath);
                     break;
             }

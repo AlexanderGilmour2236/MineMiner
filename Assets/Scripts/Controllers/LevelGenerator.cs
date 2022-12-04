@@ -1,14 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Zenject;
 
 namespace MineMiner
 {
     public class LevelGenerator
     {
-        [Inject] private BlocksController _blocksController;
-        [Inject] private BlocksFactory _blocksFactory;
+        private BlocksController _blocksController;
+        private BlocksFactory _blocksFactory;
         
         private int _xMax;
         private int _yMax;
@@ -20,6 +19,12 @@ namespace MineMiner
         private Dictionary<DestroyableBlockView, Vector3Int> _blockViewToPosition = new Dictionary<DestroyableBlockView, Vector3Int>();
         private Dictionary<Vector2Int, int> _blockPositionToMaxY = new Dictionary<Vector2Int, int>();
 
+        public LevelGenerator(BlocksController blocksController, BlocksFactory blocksFactory)
+        {
+            _blocksController = blocksController;
+            _blocksFactory = blocksFactory;
+        }
+        
         public void GenerateLevel(int xMax, int yMax, int zMax)
         {
             _currentBlockViews.Clear();

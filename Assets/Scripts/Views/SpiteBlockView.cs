@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace MineMiner
 {
-    public class SpiteBlockView : BlockView
+    public class SpiteBlockView : DroppedBlockView
     {
     }
 }

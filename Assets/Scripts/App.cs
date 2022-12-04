@@ -1,5 +1,4 @@
 using UnityEngine.SceneManagement;
-using Zenject;
 
 namespace MineMiner
 {
@@ -15,8 +14,11 @@ namespace MineMiner
                 _instance = this;
             }
         }
-        
-        public virtual void StartGame() { }
+
+        public virtual void StartGame(SceneType startScene)
+        {
+            GlobalUpdater.Instance.AddTickable(this);
+        }
 
         public void Tick()
         {
@@ -40,7 +42,8 @@ namespace MineMiner
 
         public static void RestartApp()
         {
-            SceneManager.LoadScene("MainScene");
+            GlobalUpdater.Instance.ClearTickables();
+            SceneManager.LoadScene(SceneNames.MAIN_LOADER_SCENE);
         }
     }
 }

@@ -1,16 +1,31 @@
-using Zenject;
-
 namespace MineMiner
 {
     public class MineMinerApp : App
     {
-        [Inject] private MineSceneNavigator _mineSceneNavigator;
-
-
-        public override void StartGame()
+        private SceneNavigator _sceneNavigator;
+        private Player _player;
+        
+        public override void StartGame(SceneType startScene)
         {
-            base.StartGame();
-            _mineSceneNavigator.Go();
+            base.StartGame(startScene);
+
+            _player = LoadPlayer();
+            if (startScene == SceneType.MINE_SCENE)
+            {
+                _sceneNavigator = new MineSceneNavigator(SceneNames.MINE_SCENE, _player);
+                _sceneNavigator.Go(); 
+            }
+            else
+            {
+                _sceneNavigator = new MapEditorNavigator(SceneNames.MAP_EDITOR_SCENE);
+                _sceneNavigator.Go();
+            }
+            
+        }
+
+        private Player LoadPlayer()
+        {
+            return new Player();
         }
     }
 }

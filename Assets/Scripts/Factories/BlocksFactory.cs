@@ -9,12 +9,19 @@ namespace MineMiner
         [SerializeField] private BlocksConfig _blocksConfig;
         [SerializeField] private DestroyableBlockView _defaultDestroyableBlockPrefab;
         
-        [SerializeField] private BlockView _droppedBlockPrefab;
+        [SerializeField] private DroppedBlockView _droppedBlockPrefab;
         [SerializeField] private SpiteBlockView _droppedSpriteBlockPrefab;
         [SerializeField] private DestroyableBlockMetaData defaultBlockMetaData;
         
-        
+        private MonoPool<DroppedBlockView> _droppedBlocksPool;
+        private MonoPool<DroppedBlockView> _droppedSpriteBlocksPool;
         private float? _cachedBlockSize;
+
+        private void Awake()
+        {
+            _droppedBlocksPool = new MonoPool<DroppedBlockView>(null, _droppedBlockPrefab);
+            _droppedSpriteBlocksPool = new MonoPool<DroppedBlockView>(null, _droppedSpriteBlockPrefab);
+        }
 
         public float BlockSize
         {
@@ -30,15 +37,16 @@ namespace MineMiner
             }
         }
 
-        public BlockView[] GetDroppedBlockViews(DestroyableBlockMetaData blockMetaData)
+        public DroppedBlockView[] GetDroppedBlockViews(DestroyableBlockMetaData blockMetaData)
         {
             int droppedBlocksCount = 1;
             droppedBlocksCount = Random.Range(blockMetaData.DroppedMinCount, blockMetaData.DroppedMaxCount);
-            
-            BlockView[] droppedBlocks = new BlockView[droppedBlocksCount];
+            print(droppedBlocksCount);
+            DroppedBlockView[] droppedBlocks = new DroppedBlockView[droppedBlocksCount];
             for (int i = 0; i < droppedBlocksCount; i++)
             {
-                BlockView blockView = Instantiate(GetDroppedBlockPrefab(blockMetaData));
+                DroppedBlockView blockView = GetDroppedBlockPool(blockMetaData.BlockType).GetObject();
+                blockView.gameObject.name = $"gnida{i}";
                 blockView.SetMetaData(blockMetaData);
                 droppedBlocks[i] = blockView;
             }
@@ -47,28 +55,36 @@ namespace MineMiner
            
         }
 
-        private BlockView GetDroppedBlockPrefab(DestroyableBlockMetaData blockMetaData)
+        public MonoPool<DroppedBlockView> GetDroppedBlockPool(BlockType blockType)
         {
-            if (blockMetaData.droppedBlockMetaData == null)
+            if (blockType == BlockType.None)
             {
-                return _droppedBlockPrefab;
+                return _droppedBlocksPool;
             }
-
-            return GetDroppedBlockPrefab(blockMetaData.droppedBlockMetaData);
-        }
-
-        private BlockView GetDroppedBlockPrefab(BlockMetaData blockMetaDataDroppedBlockMetaData)
-        {
-            BlockType blockType = blockMetaDataDroppedBlockMetaData.BlockType;
+            
             switch (blockType)
             {
                 case BlockType.DefaultBlock:
-                    return _droppedBlockPrefab;
+                    return _droppedBlocksPool;
                 case BlockType.SpriteBlock:
-                    return _droppedSpriteBlockPrefab;
+                    return _droppedSpriteBlocksPool;
                 default: 
                     throw new Exception($"Cannot find block prefab with type: {blockType}");
             }
+        }
+        
+        public MonoPool<DroppedBlockView> GetDroppedBlockPool(DroppedBlockView droppedBlockView)
+        {
+            if (_droppedBlocksPool.ContainsItem(droppedBlockView))
+            {
+                return _droppedBlocksPool;
+            }
+            if (_droppedSpriteBlocksPool.ContainsItem(droppedBlockView))
+            {
+                return _droppedSpriteBlocksPool;
+            }
+
+            return null;
         }
 
         public DestroyableBlockView GetDestroyableBlockView(Vector3Int position, DestroyableBlockMetaData blockMetaData = null, Transform parent = null)

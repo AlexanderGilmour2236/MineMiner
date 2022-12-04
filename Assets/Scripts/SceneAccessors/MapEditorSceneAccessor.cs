@@ -8,11 +8,33 @@ namespace MineMiner
         [SerializeField] private MapEditorUI _mapEditorUI;
         [SerializeField] private Transform _levelStartPoint;
         [SerializeField] private DestroyableBlockView _currentSampleBlockView;
-        [SerializeField] public Image NoizeImage;
+        [SerializeField] public Image _noizeImage;
+        [SerializeField] private BlocksFactory _blocksFactory;
+        [SerializeField] private MapEditorCameraController _mapEditorCameraController;
 
-        public MapEditorUI MapEditorUI => _mapEditorUI;
-        public Transform LevelStartPoint => _levelStartPoint;
+        public MapEditorUI MapEditorUI
+        {
+            get { return _mapEditorUI; }
+        }
 
-        public DestroyableBlockView CurrentSampleBlockView => _currentSampleBlockView; 
+        public Transform LevelStartPoint
+        {
+            get { return _levelStartPoint; }
+        }
+
+        public DestroyableBlockView CurrentSampleBlockView
+        {
+            get { return _currentSampleBlockView; }
+        }
+
+        public BlocksFactory BlocksFactory
+        {
+            get { return _blocksFactory; }
+        }
+
+        public MapEditorCameraController MapEditorCameraController
+        {
+            get { return _mapEditorCameraController; }
+        }
     }
 }

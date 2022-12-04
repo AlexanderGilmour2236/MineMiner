@@ -5,11 +5,12 @@ namespace MineMiner
 {
     public class MonoPool<T> where T : Component
     {
-        private readonly Stack<T> _used = new Stack<T>();
-        private readonly Stack<T> _free = new Stack<T>();
+        private readonly List<T> _used = new List<T>();
+        private readonly List<T> _free = new List<T>();
             
         private readonly Transform _parent;
         private readonly T _prefab;
+
         public MonoPool(Transform parent, T prefab = null)
         {
             this._parent = parent;
@@ -26,36 +27,42 @@ namespace MineMiner
                     component = new GameObject().AddComponent<T>();
                     component.transform.SetParent(_parent, false);
 
-                    _used.Push(component);
+                    _used.Add(component);
                     return component;
                 }
                 else
                 {
                     GameObject newObject = Object.Instantiate(_prefab.gameObject, _parent);
                     component = newObject.GetComponent<T>();
-                    _used.Push(component);
+                    _used.Add(component);
                     return component;
                 }
             }
 
-            component = _free.Pop();
+            component = _free[0];
+            _free.Remove(component);
             component.gameObject.SetActive(true);
-            _used.Push(component);
+            _used.Add(component);
             return component;
         }
 
 
         public void ReleaseObject(T obj)
         {
-            _used.Pop();
+            _used.Remove(obj);
             obj.gameObject.SetActive(false);
-            _free.Push(obj);
+            _free.Add(obj);
         }
 
         public void Dispose()
         {
             _free.Clear();
             _used.Clear();
+        }
+
+        public bool ContainsItem(T item)
+        {
+            return _used.Contains(item) || _free.Contains(item);
         }
     }
 }
