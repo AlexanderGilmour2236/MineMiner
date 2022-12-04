@@ -254,7 +254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2963042178268868233, guid: 67d08361810fdf84783669a5a61726db, type: 3}
       propertyPath: _startScene
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2963042178268868342, guid: 67d08361810fdf84783669a5a61726db, type: 3}
       propertyPath: m_RootOrder
