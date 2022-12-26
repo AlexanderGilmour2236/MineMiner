@@ -8,6 +8,7 @@ namespace MineMiner
     {
         private Camera _camera;
         private LayerMask _layerMask;
+        private bool _enabled;
         
         public event Action<RaycastHit> onHit;
 
@@ -16,10 +17,15 @@ namespace MineMiner
             _camera = camera;
             _layerMask = layerMask;
         }
+
+        public void SetIsEnabled(bool enabled)
+        {
+            _enabled = enabled;
+        }
         
         public void Tick()
         {
-            if (!Input.GetMouseButton(0)){
+            if (!_enabled || !Input.GetMouseButton(0)){
                 return;
             }
             
@@ -27,7 +33,6 @@ namespace MineMiner
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit, 500, _layerMask))
             {
-                Debug.Log("hit");
                 onHit?.Invoke(hit);
             }
         }

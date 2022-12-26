@@ -14,21 +14,27 @@ namespace MineMiner
         private ICameraMovementStrategy _aroundCameraMovementStrategy;
 
         private Vector3 _mouseDownPosition = Vector3.zero;
+
         private Vector2 _mouseDragPosition = Vector2.zero;
+
         private Vector3 _cameraPivotTargetPosition;
+
+        private IGetLevelRotationStrategy _getLevelRotationStrategy;
 
         public void Init()
         {
             _aroundCameraMovementStrategy = new AroundCameraMovementStrategy(_camera, _cameraPivot, _cameraStartOffset);
         }
-        
+
+        public void SetGetLevelRotationStrategy(IGetLevelRotationStrategy getLevelRotationStrategy)
+        {
+            _getLevelRotationStrategy = getLevelRotationStrategy;
+
+        }
+
         public void Tick()
         {
-            float xRotation = (_mouseDragPosition.y - _mouseDownPosition.y) * _mouseSensitivity;
-            float yRotation = (_mouseDragPosition.x - _mouseDownPosition.x) * _mouseSensitivity;
-
-            Vector3 rotation = new Vector3(-xRotation, yRotation);
-
+            Vector3 rotation = _getLevelRotationStrategy.GetRotation(this);
             _aroundCameraMovementStrategy.Rotate(rotation);
 
             _cameraPivot.position = Vector3.Lerp(_cameraPivot.position, _cameraPivotTargetPosition, _cameraMoveSpeed);
@@ -55,14 +61,33 @@ namespace MineMiner
             _mouseDragPosition = _mouseDownPosition;
         }
 
-        public void setPivotPosition(Vector3 position)
+        public void setPivotPosition(Vector3 position, bool instantly = false)
         {
             _cameraPivotTargetPosition = position;
+            if (instantly)
+            {
+                _cameraPivot.position = _cameraPivotTargetPosition;
+            }
         }
-        
+
         public Camera Camera
         {
             get { return _camera; }
+        }
+
+        public Vector3 MouseDownPosition
+        {
+            get { return _mouseDownPosition; }
+        }
+
+        public Vector2 MouseDragPosition
+        {
+            get { return _mouseDragPosition; }
+        }
+        
+        public float MouseSensitivity
+        {
+            get { return _mouseSensitivity; }
         }
     }
 }

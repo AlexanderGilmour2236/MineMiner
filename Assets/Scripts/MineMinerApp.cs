@@ -25,7 +25,9 @@ namespace MineMiner
 
         private Player LoadPlayer()
         {
-            return new Player();
+            Player player = new Player();
+            player.LoadPlayerData();
+            return player;
         }
     }
 }

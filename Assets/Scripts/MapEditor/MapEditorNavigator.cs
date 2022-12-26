@@ -31,7 +31,7 @@ namespace MineMiner
             _mapEditorSceneAccessor = Object.FindObjectOfType<MapEditorSceneAccessor>();
             _mapEditorCameraController = _mapEditorSceneAccessor.MapEditorCameraController;
             _blocksFactory = _mapEditorSceneAccessor.BlocksFactory;
-            _blocksController = new BlocksController(_blocksFactory);
+            _blocksController = new BlocksController(_blocksFactory, new Player() { Damage = 999 });
             _mapEditorUI = _mapEditorSceneAccessor.MapEditorUI;
             _saveLoadPath = $"{Application.dataPath}/Resources/Levels/";
             _mapEditorUI.NewLevelButton.onClick.AddListener(OnNewLevelButtonClick);

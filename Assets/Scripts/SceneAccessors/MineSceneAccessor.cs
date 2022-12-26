@@ -18,7 +18,7 @@ namespace MineMiner
 
         public void Awake()
         {
-            _rButton.onClick.AddListener(() => App.RestartApp());
+            // _rButton.onClick.AddListener(() => App.RestartApp());
         }
 
         public Transform LevelParent

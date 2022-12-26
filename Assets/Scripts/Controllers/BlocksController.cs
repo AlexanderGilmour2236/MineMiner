@@ -8,7 +8,8 @@ namespace MineMiner
     public class BlocksController
     {
         private BlocksFactory _blocksFactory;
-        
+        private Player _player;
+
         private Transform _levelCenterTransform;
         
         public event Action<DestroyableBlockView, int> onBlockDestroy;
@@ -28,9 +29,10 @@ namespace MineMiner
         private Transform _levelParent;
         private List<DroppedBlockView> _allDroppedBlockViews = new List<DroppedBlockView>();
 
-        public BlocksController(BlocksFactory blocksFactory)
+        public BlocksController(BlocksFactory blocksFactory, Player player)
         {
             _blocksFactory = blocksFactory;
+            _player = player;
         }
         
         public void Init(CracksBlock cracksBlockPrefab, Transform levelCenterTransform, Transform levelParent)
@@ -113,7 +115,7 @@ namespace MineMiner
         public void OnHit(DestroyableBlockView blockView)
         {
             OnBlockHit(blockView);
-            onBlockHit?.Invoke(blockView);
+            blockView.Hit(Time.deltaTime * _player.Damage);
         }
 
         private void OnBlockDestroy(DestroyableBlockView block)

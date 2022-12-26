@@ -41,12 +41,10 @@ namespace MineMiner
         {
             int droppedBlocksCount = 1;
             droppedBlocksCount = Random.Range(blockMetaData.DroppedMinCount, blockMetaData.DroppedMaxCount);
-            print(droppedBlocksCount);
             DroppedBlockView[] droppedBlocks = new DroppedBlockView[droppedBlocksCount];
             for (int i = 0; i < droppedBlocksCount; i++)
             {
                 DroppedBlockView blockView = GetDroppedBlockPool(blockMetaData.BlockType).GetObject();
-                blockView.gameObject.name = $"gnida{i}";
                 blockView.SetMetaData(blockMetaData);
                 droppedBlocks[i] = blockView;
             }

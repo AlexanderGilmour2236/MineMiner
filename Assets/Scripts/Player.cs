@@ -1,4 +1,5 @@
 using ResourcesProvider;
+using UnityEngine;
 
 namespace MineMiner
 {
@@ -9,6 +10,16 @@ namespace MineMiner
         public Player()
         {
             Damage = 5f;
+        }
+
+        public void LoadPlayerData()
+        {
+            _playerResources.AddResource(BlockId.Golds, PlayerPrefs.GetInt(PlayerPrefsKeys.PlayersGolds));
+        }
+        
+        public void SavePlayerData()
+        {
+            PlayerPrefs.SetInt(PlayerPrefsKeys.PlayersGolds, _playerResources.GetPlayerResource(BlockId.Golds).Amount);
         }
         
         public float Damage { get; set; }

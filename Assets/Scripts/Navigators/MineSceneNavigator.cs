@@ -21,6 +21,8 @@ namespace MineMiner
         private bool _isNavigatorInitiated;
         private readonly Player _player;
         private MineSceneUI _mineSceneUI;
+
+        private MineSceneState _mineSceneState;
         
         public MineSceneNavigator(String sceneName, Player player) : base(sceneName)
         {
@@ -35,6 +37,32 @@ namespace MineMiner
 
             InitControllers();
             InitUI();
+            SetMainSceneState(MineSceneState.MainMenu);
+        }
+
+        private void SetMainSceneState(MineSceneState mainMenuState)
+        {
+            _mineSceneState = mainMenuState;
+            switch (mainMenuState)
+            {
+                case MineSceneState.MainMenu:
+                    _cameraRaycastController.SetIsEnabled(false);
+                    _mineSceneUI.ShowMainMenuUI();
+                    _levelCameraController.SetGetLevelRotationStrategy(new TimeGetLevelRotationStrategy(30));
+                    break;
+                case MineSceneState.EndlessMode:
+                    _cameraRaycastController.SetIsEnabled(true);
+                    _mineSceneUI.HideMainMenuUI();
+                    _levelCameraController.SetGetLevelRotationStrategy(new DragGetLevelRotationStrategy());
+                    break;
+                case MineSceneState.BlockFromStore:
+                    _cameraRaycastController.SetIsEnabled(true);
+                    _mineSceneUI.HideMainMenuUI();
+                    _levelCameraController.SetGetLevelRotationStrategy(new DragGetLevelRotationStrategy());
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(mainMenuState), mainMenuState, null);
+            }
         }
 
         private void SubscribePlayer(Player player)
@@ -45,14 +73,56 @@ namespace MineMiner
         private void OnPlayerResourceChanged(PlayerResource playerResource)
         {
             _mineSceneUI.UpdatePlayerResource(playerResource);
+            _player.SavePlayerData();
         }
 
         private void InitUI()
         {
             _mineSceneUI = _mineSceneAccessor.MineSceneUI;
             _mineSceneUI.Init(_blocksFactory);
+            SubscribeMainSceneUI(_mineSceneUI);
         }
-        
+
+        private void InitControllers()
+        {
+            _blocksFactory = _mineSceneAccessor.BlocksFactory;
+            _blocksController = new BlocksController(_blocksFactory, _player);
+            _levelGenerator = new LevelGenerator(_blocksController, _blocksFactory);
+            
+            _levelCameraController = _mineSceneAccessor.CameraLevelController;
+            _cameraRaycastController = new CameraRaycastController(_levelCameraController.Camera, 1 << LayerMask.NameToLayer(TagManager.DestroyableBlocksLayer));
+            _cameraRaycastController.onHit += HitBlockByRaycast;
+            _blocksController.Init(_mineSceneAccessor.CracksBlockPrefab, _mineSceneAccessor.LevelCenterTransform, _mineSceneAccessor.LevelParent);
+            _blocksController.onBlockDestroy += OnBlockDestroy;
+            CreateLevelBlocks();
+            _levelCameraController.Init();
+            _levelCameraController.SetGetLevelRotationStrategy(new TimeGetLevelRotationStrategy(30));
+            
+            _isNavigatorInitiated = true;
+        }
+
+        private void SubscribeMainSceneUI(MineSceneUI mineSceneUI)
+        {
+            mineSceneUI.onGoToMainMenuClick += GoToMainMenu;
+            mineSceneUI.onGoToEndlessModeClick += GoToEndlessMode;
+        }
+
+        private void UnsubscribeMainSceneUI(MineSceneUI mineSceneUI)
+        {
+            mineSceneUI.onGoToMainMenuClick += GoToMainMenu;
+            mineSceneUI.onGoToEndlessModeClick += GoToEndlessMode;
+        }
+
+        private void GoToMainMenu()
+        {
+            SetMainSceneState(MineSceneState.MainMenu);
+        }
+
+        private void GoToEndlessMode()
+        {
+            SetMainSceneState(MineSceneState.EndlessMode);
+        }
+
 
         public override void Tick()
         {
@@ -66,24 +136,6 @@ namespace MineMiner
             _levelCameraController.Tick();
         }
 
-        private void InitControllers()
-        {
-            _blocksFactory = _mineSceneAccessor.BlocksFactory;
-            _blocksController = new BlocksController(_blocksFactory);
-            _levelGenerator = new LevelGenerator(_blocksController, _blocksFactory);
-            
-            _levelCameraController = _mineSceneAccessor.CameraLevelController;
-            _cameraRaycastController = new CameraRaycastController(_levelCameraController.Camera, 1 << LayerMask.NameToLayer(TagManager.DestroyableBlocksLayer));
-            _cameraRaycastController.onHit += HitBlockByRaycast;
-            _blocksController.Init(_mineSceneAccessor.CracksBlockPrefab, _mineSceneAccessor.LevelCenterTransform, _mineSceneAccessor.LevelParent);
-            _blocksController.onBlockDestroy += OnOnBlockDestroy;
-            _blocksController.onBlockHit += OnBlockHit;
-            CreateLevelBlocks();
-            _levelCameraController.Init();
-            
-            _isNavigatorInitiated = true;
-        }
-
         private void HitBlockByRaycast(RaycastHit raycastHit)
         {
             DestroyableBlockView destroyableBlockView = raycastHit.collider.GetComponent<DestroyableBlockView>();
@@ -92,47 +144,44 @@ namespace MineMiner
 
         private void CreateLevelBlocks()
         {
-            // LevelData levelData = SaveLoadController.LoadObjectFromString(
-            //     _levelsFilesConfig.LevelConfigs[Random.Range(0, _levelsFilesConfig.LevelConfigs.Length)].LevelFile.text,
-            //     (json) => new LevelData(json));
-            //
-            //
-            // int blockIndex = 0;
-            // foreach (BlockData blockData in levelData.BlockDatas)
-            // {
-            //     blockData.BlockMetaData = _blocksFactory.GetBlockMetaData(blockData.BlockId); 
-            //     if (blockData.BlockDataType == BlockDataType.Destroyable)
-            //     {
-            //         DestroyableBlockData destroyableBlockData = (DestroyableBlockData) blockData;
-            //         _blocksController.CreateBlock(destroyableBlockData.Position, (DestroyableBlockMetaData)blockData.BlockMetaData);
-            //     }
-            //
-            //     blockIndex++;
-            // }
-            
-            _levelGenerator.GenerateLevel(Random.Range(3, 6),Random.Range(5,10), Random.Range(3, 7));
+            LoadLevelFromGenerator();
 
             _blocksController.SetCenterPoint();
-            _levelCameraController.setPivotPosition(_blocksController.LevelCenterTransform.position);
+            _levelCameraController.setPivotPosition(_blocksController.LevelCenterTransform.position, true);
         }
 
-        private void OnBlockHit(DestroyableBlockView blockView)
+        private void LoadLevelFromGenerator()
         {
-            if (blockView.Hit(Time.deltaTime * _player.Damage))
-            {
-                DestroyableBlockMetaData destroyableBlockMetaData = blockView.DestroyableBlockMetaData;
-                return;
-            }
-
-            _levelCameraController.StopDrag();
-            
+            _levelGenerator.GenerateLevel(Random.Range(3, 6),Random.Range(5,10), Random.Range(3, 7));
         }
 
-        private void OnOnBlockDestroy(BlockView block, int droppedBlocksCount)
+        private void LoadLevelFromJson(int levelIndex)
+        {
+            LevelData levelData = SaveLoadController.LoadObjectFromString(
+                _levelsFilesConfig.LevelConfigs[levelIndex].LevelFile.text,
+                (json) => new LevelData(json));
+
+            foreach (BlockData blockData in levelData.BlockDatas)
+            {
+                blockData.BlockMetaData = _blocksFactory.GetBlockMetaData(blockData.BlockId); 
+                if (blockData.BlockDataType == BlockDataType.Destroyable)
+                {
+                    DestroyableBlockData destroyableBlockData = (DestroyableBlockData) blockData;
+                    _blocksController.CreateBlock(destroyableBlockData.Position, (DestroyableBlockMetaData)blockData.BlockMetaData);
+                }
+            }
+        }
+
+        private void OnBlockDestroy(BlockView block, int droppedBlocksCount)
         {
             _blocksController.SetCenterPoint();
             _player.PlayerResources.AddResource(block.MetaData.Id, droppedBlocksCount);
             _levelCameraController.setPivotPosition(_blocksController.LevelCenterTransform.position);
+            
+            if (_mineSceneState == MineSceneState.EndlessMode && _blocksController.CurrentBlocks.Count == 0)
+            {
+                CreateLevelBlocks();
+            }
         }
 
 
